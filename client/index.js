@@ -15,9 +15,11 @@ async function handleOnLoad(){
 
 async function createTable(){
     await GetAllAttendees();
+    
 
     let html =`
-    <div class="container my-5">
+    <div class="container my-5 text-center">
+        <h1 class="display-5 fw-bold">Attendees</h1>
     <div class="p-5 text-center rounded-3" style="background-color: hsl(0, 0%, 100%);">
     <table class="table table-hover center" id="myTable">
         <thead id="table-header">
