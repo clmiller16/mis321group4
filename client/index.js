@@ -24,9 +24,9 @@ async function createTable(){
     <table class="table table-hover center" id="myTable">
         <thead id="table-header">
             <tr>
-                <th scope="col">Activity</th>
-                <th scope="col">Distance (miles)</th>
-                <th scope="col">Completed Date</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
             </tr>
         </thead>
         <tbody id="myTableBody" class="table-group-divider">`;
