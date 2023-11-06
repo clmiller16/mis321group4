@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using api.models;
 
 namespace api.Controllers
 {
@@ -13,9 +14,10 @@ namespace api.Controllers
     {
         // GET: api/Attendance
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Attendee> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Attendee> attendees = AttendeeUtility.GetAttendeeData();
+            return attendees;
         }
 
         // GET: api/Attendance/5
