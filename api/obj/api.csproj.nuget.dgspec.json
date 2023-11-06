@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\willa\\source\\mis321\\mis321group4\\api\\api.csproj": {}
+    "C:\\Users\\isaia\\Projects\\mis321group4\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\willa\\source\\mis321\\mis321group4\\api\\api.csproj": {
+    "C:\\Users\\isaia\\Projects\\mis321group4\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\willa\\source\\mis321\\mis321group4\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\isaia\\Projects\\mis321group4\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\willa\\source\\mis321\\mis321group4\\api\\api.csproj",
-        "packagesPath": "C:\\Users\\willa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\willa\\source\\mis321\\mis321group4\\api\\obj\\",
+        "projectPath": "C:\\Users\\isaia\\Projects\\mis321group4\\api\\api.csproj",
+        "packagesPath": "C:\\Users\\isaia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\isaia\\Projects\\mis321group4\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\willa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\isaia\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }
