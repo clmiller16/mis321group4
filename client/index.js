@@ -1,4 +1,4 @@
-const url = 'http://localhost:5124/api/mis321group4';
+const url = 'http://localhost:5124/api/attendance';
 
 // this url needs to change to be /attendee instead of mis321 group 4... the controller also needs to change to match it
 // prolly need to have seperate controllers for each entity... maybe

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using api.models;
 
 namespace api.Controllers
 {
@@ -19,7 +20,7 @@ namespace api.Controllers
         }
 
         // GET: api/Transaction/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";

@@ -21,17 +21,18 @@ namespace api.Controllers
         }
 
         // GET: api/Attendance/5
-        [HttpGet("{id}", Name = "Get")]
-        public Attendee Get(int id)
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            AttendeeUtility utility = new AttendeeUtility();
-            List<Attendee> attendees = AttendeeUtility.GetAttendeeData();
-            foreach(Attendee attendee in attendees){
-                if(attendee.AttendeeID == id){
-                    return attendee;
-                }
-            }
-            return new Attendee();
+            // AttendeeUtility utility = new AttendeeUtility();
+            // List<Attendee> attendees = AttendeeUtility.GetAttendeeData();
+            // foreach(Attendee attendee in attendees){
+            //     if(attendee.AttendeeID == id){
+            //         return attendee;
+            //     }
+            // }
+            // return new Attendee();
+            return "string";
         }
 
         // POST: api/Attendance
