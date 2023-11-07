@@ -41,7 +41,7 @@ namespace api
             con.Open();
 
             // check line below
-            string stm = "INSERT INTO attendee (AttendeeID, FirstName, LastName, Email, Password, CreditCard) VALUES (@AttendeeID, @Distance, @FirstName, @LastName, @Email, @Password, @CreditCard);";
+            string stm = "INSERT INTO attendee (AttendeeID, FirstName, LastName, Email, Password, CreditCard) VALUES (@AttendeeID, @FirstName, @LastName, @Email, @Password, @CreditCard);";
             using var cmd = new MySqlCommand(stm, con);
             
             cmd.Parameters.AddWithValue("@AttendeeID", attendee.AttendeeID);

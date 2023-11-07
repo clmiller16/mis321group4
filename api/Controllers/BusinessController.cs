@@ -14,9 +14,10 @@ namespace api.Controllers
     {
         // GET: api/Business
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Business> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Business> businessess = BusinessUtility.GetBusinessData();
+            return businessess;
         }
 
         // GET: api/Business/5
