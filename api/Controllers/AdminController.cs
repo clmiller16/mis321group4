@@ -22,7 +22,7 @@ namespace api.Controllers
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
-            
+            return "value";
         }
 
         // POST: api/Admin
