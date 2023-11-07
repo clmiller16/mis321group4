@@ -33,5 +33,27 @@ namespace api
 
             return attendees;
         }
+
+        public static void InsertAttendeeData(Attendee attendee){
+            Database db = new Database();
+
+            using var con = new MySqlConnection(db.cs);
+            con.Open();
+
+            // check line below
+            string stm = "INSERT INTO attendee (AttendeeID, FirstName, LastName, Email, Password, CreditCard) VALUES (@AttendeeID, @Distance, @FirstName, @LastName, @Email, @Password, @CreditCard);";
+            using var cmd = new MySqlCommand(stm, con);
+            
+            cmd.Parameters.AddWithValue("@AttendeeID", attendee.AttendeeID);
+            cmd.Parameters.AddWithValue("@FirstName", attendee.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", attendee.LastName);
+            cmd.Parameters.AddWithValue("@Email", attendee.Email);
+            cmd.Parameters.AddWithValue("@Password", attendee.Password);
+            cmd.Parameters.AddWithValue("@CreditCard", attendee.CreditCard);
+
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
     }
 }

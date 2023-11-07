@@ -21,28 +21,42 @@ namespace api.Controllers
         }
 
         // GET: api/Attendance/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            // AttendeeUtility utility = new AttendeeUtility();
+            // List<Attendee> attendees = AttendeeUtility.GetAttendeeData();
+            // foreach(Attendee attendee in attendees){
+            //     if(attendee.AttendeeID == id){
+            //         return attendee;
+            //     }
+            // }
+            // return new Attendee();
+            return "string";
         }
 
         // POST: api/Attendance
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Attendee attendee)
         {
+            if (attendee != null)
+            {
+                AttendeeUtility.InsertAttendeeData(attendee);
+            }
         }
 
         // PUT: api/Attendance/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE: api/Attendance/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
         }
     }
 }
