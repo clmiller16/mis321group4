@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using api.models;
+using api.utilities;
 
 namespace api.Controllers
 {
@@ -14,16 +15,23 @@ namespace api.Controllers
     {
         // GET: api/Transaction
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Transaction> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Transaction> transactions = TransactionUtility.GetTransactionData();
+            return transactions;
         }
 
         // GET: api/Transaction/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Transaction Get(int id)
         {
-            return "value";
+            List<Transaction> transactions = TransactionUtility.GetTransactionData();
+            foreach(Transaction t in transactions){
+                if(t.TransactionID == id){
+                    return t;
+                }
+            }
+            return new Transaction();
         }
 
         // POST: api/Transaction

@@ -16,15 +16,22 @@ namespace api.Controllers
         [HttpGet]
         public IEnumerable<Business> Get()
         {
-            List<Business> businessess = BusinessUtility.GetBusinessData();
-            return businessess;
+            List<Business> businesses = BusinessUtility.GetBusinessData();
+            return businesses;
         }
 
         // GET: api/Business/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Business Get(int id)
         {
-            return "value";
+            BusinessUtility utility = new BusinessUtility();
+            List<Business> businesses = BusinessUtility.GetBusinessData();
+            foreach(Business b in businesses){
+                if(b.BusinessID == id){
+                    return b;
+                }
+            }
+                return new Business();
         }
 
         // POST: api/Business

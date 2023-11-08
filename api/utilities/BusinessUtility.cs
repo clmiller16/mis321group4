@@ -22,11 +22,11 @@ namespace api
                     BusinessID = rdr.GetInt32(0),
                     CompanyName = rdr.GetString(1),
                     FirstName = rdr.GetString(2),
-                    LastName = rdr.GetString(4),
-                    ProductType = rdr.GetString(5),
-                    Email = rdr.GetString(6),
-                    Password = rdr.GetString(7),
-                    Logo = rdr.GetString(8)
+                    LastName = rdr.GetString(3),
+                    ProductType = rdr.GetString(4),
+                    Email = rdr.GetString(5),
+                    Password = rdr.GetString(6),
+                    Logo = rdr.GetString(7)
                 });
             }
             
@@ -35,7 +35,7 @@ namespace api
             return businesses;
         }
 
-        public static void InsertbusinessData(Business business){
+        public static void InsertBusinessData(Business business){
             Database db = new Database();
 
             using var con = new MySqlConnection(db.cs);

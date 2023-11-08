@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using api.models;
+using api.utilities;
 
 namespace api.Controllers
 {
@@ -14,16 +15,23 @@ namespace api.Controllers
     {
         // GET: api/Admin
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Admin> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Admin> admins = AdminUtility.GetAdminData();
+            return admins;
         }
 
         // GET: api/Admin/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Admin Get(int id)
         {
-            return "value";
+            List<Admin> admins = AdminUtility.GetAdminData();
+            foreach(Admin a in admins){
+                if (a.AdminID == id){
+                    return a;
+                }
+            }
+            return new Admin();
         }
 
         // POST: api/Admin
