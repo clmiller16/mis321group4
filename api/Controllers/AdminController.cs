@@ -36,8 +36,12 @@ namespace api.Controllers
 
         // POST: api/Admin
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Admin admin)
         {
+            if (admin != null)
+            {
+                AdminUtility.InsertAdminData(admin);
+            }
         }
 
         // PUT: api/Admin/5
