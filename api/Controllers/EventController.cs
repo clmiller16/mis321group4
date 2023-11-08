@@ -37,8 +37,12 @@ namespace api.Controllers
 
         // POST: api/Event
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Event e)
         {
+            if (e != null)
+            {
+                EventUtility.InsertEventData(e);
+            }
         }
 
         // PUT: api/Event/5

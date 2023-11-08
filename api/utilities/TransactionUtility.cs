@@ -25,6 +25,8 @@ namespace api.utilities
                     NumChildTickets = rdr.GetInt32(3),
                     NumSeniorTickets = rdr.GetInt32(4),
                     NumStudentTickets = rdr.GetInt32(5),
+                    EventID = rdr.GetInt32(6),
+                    AttendeeID = rdr.GetInt32(7)
                 });
             }
             
@@ -33,14 +35,14 @@ namespace api.utilities
             return transactions;
         }
 
-        public static void InsertEventData(Transaction transactions){
+        public static void InsertTransactionData(Transaction transactions){
             Database db = new Database();
 
             using var con = new MySqlConnection(db.cs);
             con.Open();
 
             // check line below
-            string stm = "INSERT INTO transaction (TransactionID, TotalCost, NumAdultTickets, NumChildTickets, NumSeniorTickets, NumStudentTickets) VALUES (@TransactionID, @TotalCost, @NumAdultTickets, @NumChildTickets, @NumSeniorTickets, @NumStudentTickets);";
+            string stm = "INSERT INTO transaction (TransactionID, TotalCost, NumAdultTickets, NumChildTickets, NumSeniorTickets, NumStudentTickets, EventID, AttendeeID) VALUES (@TransactionID, @TotalCost, @NumAdultTickets, @NumChildTickets, @NumSeniorTickets, @NumStudentTickets, @EventID, @AttendeeID);";
             using var cmd = new MySqlCommand(stm, con);
             
             cmd.Parameters.AddWithValue("@TransactionID", transactions.TransactionID);
@@ -49,6 +51,8 @@ namespace api.utilities
             cmd.Parameters.AddWithValue("@NumChildTickets", transactions.NumChildTickets);
             cmd.Parameters.AddWithValue("@NumSeniorTickets", transactions.NumSeniorTickets);
             cmd.Parameters.AddWithValue("@NumStudentTickets", transactions.NumStudentTickets);
+            cmd.Parameters.AddWithValue("@EventID", transactions.EventID);
+            cmd.Parameters.AddWithValue("@AttendeeID", transactions.AttendeeID);
 
             cmd.ExecuteNonQuery();
 

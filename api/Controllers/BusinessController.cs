@@ -36,8 +36,12 @@ namespace api.Controllers
 
         // POST: api/Business
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Business business)
         {
+            if (business != null)
+            {
+                BusinessUtility.InsertBusinessData(business);
+            }
         }
 
         // PUT: api/Business/5

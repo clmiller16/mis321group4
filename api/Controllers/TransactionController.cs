@@ -36,14 +36,19 @@ namespace api.Controllers
 
         // POST: api/Transaction
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Transaction transaction)
         {
+            if (transaction != null)
+            {
+                TransactionUtility.InsertTransactionData(transaction);
+            }
         }
 
         // PUT: api/Transaction/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            
         }
 
         // DELETE: api/Transaction/5
