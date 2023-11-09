@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.models;
+using api.utilities;
+using Humanizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,17 +16,25 @@ namespace api.Controllers
     {
         // GET: api/Attends
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Attends> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Attends> attendsplural = AttendsUtility.GetAttendsData();
+            return attendsplural;
+
         }
 
         // GET: api/Attends/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        [HttpGet("{id}")]
+        // public Attends Get(int id)
+        // {
+        //     List<Attends> attendsplural = AttendsUtility.GetAttendsData();
+        //     foreach(Attends a in attendsplural){
+        //         if(a. == id){
+        //             return a;
+        //         }
+        //     }
+        //     return new Attends();
+        // }
 
         // POST: api/Attends
         [HttpPost]
