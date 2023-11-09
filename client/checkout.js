@@ -12,9 +12,16 @@ async function GetAllBusinesses(){
     console.log(businesses);
     return businesses;
 }
+
+async function GetAllAttends(){
+    let response = await fetch('http://localhost:5124/api/attends');
+    businesses = await response.json();
+    console.log(businesses);
+    return businesses;
+}
+
 async function handleOnLoad(){
     await createDropdown()
-    console.log('hello')
 }
 
 async function createDropdown(){
@@ -29,7 +36,7 @@ async function createDropdown(){
     <ul class="dropdown-menu" id="dropdown-container" style="max-height: 300px; overflow-y: auto;">`
 
     events.forEach(function(e){
-        html+= `<div class="container"><li><button class="btn btn-light" onclick="GetBusinessPerDate('${e.eventid}')">${e.date}</button</li></div>`
+        html+= `<div class="container"><li><button class="btn btn-light" onclick="GetBusinessPerDate('${e.eventID}')">${e.date}</button</li></div>`
     })
 
     html+= `</ul>
@@ -39,18 +46,20 @@ async function createDropdown(){
     document.getElementById('date-select').innerHTML = html;
 }
 
-function GetBusinessPerDate(id){
-    console.log('success')
-    let businesses = GetAllBusinesses();
+async function GetBusinessPerDate(id){
+    let businesses = await GetAllBusinesses();
 
     businesses.forEach(function(b){
-        if (b.BusinessID == id){
+        if (b.businessID == id){
             console.log(b)
             console.log('found a business')
+            createTable(b.businessID)
         }
     })
-    
-    
+}
+
+function createTable(foundId){
+
 }
 
 
