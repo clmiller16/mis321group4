@@ -30,7 +30,7 @@ async function createDropdown(){
     let html =`
     <div>
     <div class="dropdown text-center">
-    <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Select a Date
     </button>
     <ul class="dropdown-menu" id="dropdown-container" style="max-height: 300px; overflow-y: auto;">`
@@ -85,12 +85,22 @@ async function GetBusinessPerDate(id, date){
     html+=`</tbody>
     </table>
     </div>
+    </div>
+    <div class="center-container">
+    <button class="btn btn-primary my-5 ms-5" onclick="ChooseEvent(a.eventID)">
+        <a class="dropdown-item" href="purchasetickets2.html">Submit</a>
+    </button>
     </div>`
     document.getElementById('businesses-at-market-table').innerHTML = html;
 }
 
 function createTable(foundId){
 
+}
+
+function ChooseEvent(id){
+    window.location.href = 'newPage.html';
+    console.log(id)    
 }
 
 
