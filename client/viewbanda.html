@@ -1,4 +1,3 @@
-<!-- code to view businesses/attendees list -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,35 +12,214 @@
         h1 {
             text-align: center;
             background-color: gray;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .dropdown-center {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .scrollable-table {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
         }
     </style>
 </head>
-</head>
 <body>
 
-      <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-  
-          <div class="collapse navbar-collapse" id="navbarsExample09">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-              
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Switch Role</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="businesslogin.html">Business</a></li>
-                  <li><a class="dropdown-item" href="businesslogin.html">Admin</a></li>
+            <div class="collapse navbar-collapse" id="navbarsExample09">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Switch Role</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="businesslogin.html">Business</a></li>
+                            <li><a class="dropdown-item" href="adminlogin.html">Admin</a></li>
+                        </ul>
+                    </li>
                 </ul>
-              </li>
-            </ul>
-          </div>
+            </div>
         </div>
-      </nav>
-      <h1>View Businesses & Attendees</h1>
+    </nav>
+
+    <h1>View Businesses & Attendees</h1>
+
+    <div class="dropdown-center">
+        <div class="btn-group">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Choose Type
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="changeTable('Attendees')">Attendees</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeTable('Businesses')">Businesses</a></li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dateDropdown">
+                Choose Date
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="changeDate('Date 1')">Date 1</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeDate('Date 2')">Date 2</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="attendeesTable" class="table-container">
+        <h2>Attendees Table</h2>
+        <div class="scrollable-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Attendee ID</th>
+                        <th>Attendee Name</th>
+                        <th>Attendee Type</th>
+                    </tr>
+                </thead>
+                <tbody id="attendeesTableBody">
+                    <!-- Add rows and data for attendees -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>Child</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>Adult</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="businessesTable" class="table-container" style="display: none;">
+        <h2>Businesses Table</h2>
+        <div class="scrollable-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Business ID</th>
+                        <th>Business Name</th>
+                        <th>Business Type</th>
+                    </tr>
+                </thead>
+                <tbody id="businessesTableBody">
+                    <!-- Add rows and data for businesses -->
+                    <tr>
+                        <td>101</td>
+                        <td>ABC Inc.</td>
+                        <td>Clothing</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>XYZ Corp.</td>
+                        <td>Butchery</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <h2>Summary Table</h2>
+        <div class="scrollable-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Total</th>
+                        <th>Spots Remaining</th>
+                    </tr>
+                </thead>
+                <tbody id="summaryTableBody">
+                    <!-- Initial content for the summary table -->
+                    <tr>
+                        <td>Child</td>
+                        <td>50</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>Adult</td>
+                        <td>20</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    </body>
-    </html>
+
+    <script>
+        function changeTable(tableType) {
+            if (tableType === 'Attendees') {
+                document.getElementById('attendeesTable').style.display = 'block';
+                document.getElementById('businessesTable').style.display = 'none';
+                updateSummaryTableForAttendees();
+            } else if (tableType === 'Businesses') {
+                document.getElementById('attendeesTable').style.display = 'none';
+                document.getElementById('businessesTable').style.display = 'block';
+                updateSummaryTableForBusinesses();
+            }
+        }
+
+        function changeDate(selectedDate) {
+            document.getElementById('dateDropdown').innerText = selectedDate;
+
+            // Update table content based on the selected date
+            if (document.getElementById('attendeesTable').style.display === 'block') {
+                updateSummaryTableForAttendees();
+            } else if (document.getElementById('businessesTable').style.display === 'block') {
+                updateSummaryTableForBusinesses();
+            }
+        }
+
+        function updateSummaryTableForAttendees() {
+            // Update summary table content for attendees
+            document.getElementById('summaryTableBody').innerHTML = `
+                <tr>
+                    <td>Child</td>
+                    <td>51</td>
+                    <td>24</td>
+                </tr>
+                <tr>
+                    <td>Adult</td>
+                    <td>21</td>
+                    <td>4</td>
+                `;
+        }
+
+        function updateSummaryTableForBusinesses() {
+            // Update summary table content for businesses
+            document.getElementById('summaryTableBody').innerHTML = `
+                <tr>
+                    <td>Clothing</td>
+                    <td>30</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Butchery</td>
+                    <td>35</td>
+                    <td>15</td>
+                `;
+        }
+    </script>
+</body>
+</html>
