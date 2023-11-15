@@ -42,7 +42,26 @@
         </div>
       </div>
     </nav>
+    <div class="py-5 text-center">
+        <h2>Map of the Market</h2>
+        <img src="C:\Users\willa\Downloads\MicrosoftTeams-image.png" alt="BOOTH MAP">
+    </div>
+  
+    <div class="py-5 text-center">
+    <form>
+      <label for="booth">Choose a booth:</label>
+      <select id="booth" name="booth">
+        <script>
+          // Assuming you have 193 booth options
+          for (let i = 1; i <= 193; i++) {
+            document.write(`<option value='booth${i}'>Booth ${i}</option>`);
+          }
+        </script>
+      </select>
 
+      <input type="submit" value="Book Booth">
+    </form>
+  </div>
 
     <div id="events-table"></div>
     <div id="choose-booth"></div>
