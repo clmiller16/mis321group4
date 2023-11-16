@@ -177,8 +177,6 @@ function CreateCheckoutTable(pickedDate){
 }
 
 function AddTicket(type, pickedDate){
-    console.log('adding')
-
     if(type == "adult"){
         adultTickets++
         console.log('adult ticket added')
@@ -199,23 +197,21 @@ function AddTicket(type, pickedDate){
 }
 
 function RemoveTicket(type, pickedDate){
-    console.log('removing')
-
     if(type == "adult"){
         adultTickets--
-        console.log('adult ticket added')
+        console.log('adult ticket removed')
         CreateCheckoutTable(pickedDate)
     } else if(type == "child"){
         childTickets--
-        console.log('child ticket added')
+        console.log('child ticket removed')
         CreateCheckoutTable(pickedDate)
     } else if (type == "senior"){
         seniorTickets--
-        console.log('senior ticket added')
+        console.log('senior ticket removed')
         CreateCheckoutTable(pickedDate)
     } else if (type == "student"){
         studentTickets--
-        console.log('student ticket added')
+        console.log('student ticket removed')
         CreateCheckoutTable(pickedDate)
     }
 }
