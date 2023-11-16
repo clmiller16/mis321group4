@@ -1,4 +1,7 @@
-
+let adultTickets = 0
+let childTickets = 0
+let seniorTickets = 0
+let studentTickets = 0
 
 async function GetAllEvents(){
     let response = await fetch('http://localhost:5124/api/event');
@@ -105,8 +108,11 @@ function handleOnLoadPage2(){
     console.log(pickedDate);
     // document.getElementById('testing').innerHTML = html;
 
+    CreateCheckoutTable(pickedDate)
+}
+
+function CreateCheckoutTable(pickedDate){
     let html = `
-    
     <div class="container py-5 col-md-8">
         <header>
             <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
@@ -128,39 +134,88 @@ function handleOnLoadPage2(){
                     <tr>
                         <td>Adult</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('adult', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
+                            <button type="button" onclick="AddTicket('adult', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
                           </div></td>
-                        <td># of tickets</td>
+                        <td>${adultTickets}</td>
                     </tr>
                     <tr>
                         <td>Child</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('child', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
+                            <button type="button" onclick="AddTicket('child', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
                           </div></td>
-                        <td># of tickets</td>
+                        <td>${childTickets}</td>
                     </tr>
                     <tr>
                         <td>Student</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('student', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
+                            <button type="button" onclick="AddTicket('student', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
                           </div></td>
-                        <td># of tickets</td>
+                        <td>${studentTickets}</td>
                     </tr>
                     <tr>
                         <td>Senior</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('senior', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
+                            <button type="button" onclick="AddTicket('senior', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
                           </div></td>
-                        <td># of tickets</td>
+                        <td>${seniorTickets}</td>
                     </tr>
                 </tbody>
             </table>
+            <div class="center-container">
+                <button class="btn btn-primary my-5 ms-5">
+                    <a class="nav-link active" aria-current="page" href="checkout.html">SUBMIT</a>
+                </button>
+            </div>
         </main>
     </div>`
 
     document.getElementById('page2').innerHTML = html;
+}
+
+function AddTicket(type, pickedDate){
+    console.log('adding')
+
+    if(type == "adult"){
+        adultTickets++
+        console.log('adult ticket added')
+        CreateCheckoutTable(pickedDate)
+    } else if(type == "child"){
+        childTickets++
+        console.log('child ticket added')
+        CreateCheckoutTable(pickedDate)
+    } else if (type == "senior"){
+        seniorTickets++
+        console.log('senior ticket added')
+        CreateCheckoutTable(pickedDate)
+    } else if (type == "student"){
+        studentTickets++
+        console.log('student ticket added')
+        CreateCheckoutTable(pickedDate)
+    }
+}
+
+function RemoveTicket(type, pickedDate){
+    console.log('removing')
+
+    if(type == "adult"){
+        adultTickets--
+        console.log('adult ticket added')
+        CreateCheckoutTable(pickedDate)
+    } else if(type == "child"){
+        childTickets--
+        console.log('child ticket added')
+        CreateCheckoutTable(pickedDate)
+    } else if (type == "senior"){
+        seniorTickets--
+        console.log('senior ticket added')
+        CreateCheckoutTable(pickedDate)
+    } else if (type == "student"){
+        studentTickets--
+        console.log('student ticket added')
+        CreateCheckoutTable(pickedDate)
+    }
 }
