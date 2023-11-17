@@ -7,3 +7,12 @@
     align-items: center;
     justify-content: center;
 }
+
+.blur-background {
+    background-image: url('https://www.sonomacounty.com/sites/default/files/2019-07/farmers_markets_petaluma_by_sierra_downey_sonoma_county_1920x968.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    position: relative;
+    filter: blur(.5px); /* Adjust the blur radius as needed */
+  }
