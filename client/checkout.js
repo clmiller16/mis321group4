@@ -58,7 +58,7 @@ async function GetBusinessPerDate(id, date, location){
 
     let html =`
     <div class="container my-5 text-center">
-        <h1 class="display-5 fw-bold">Businesses Attending ${date}</h1>
+        <h1 class="display-4 fw-normal text-body-emphasis">Businesses Attending ${date}</h1>
     <div class="p-5 text-center rounded-3" style="background-color: hsl(0, 0%, 100%);">
     <table class="table table-hover center" id="myTable">
         <thead id="table-header">
@@ -90,8 +90,8 @@ async function GetBusinessPerDate(id, date, location){
     </div>
     </div>
     <div class="center-container">
-    <button class="btn btn-primary my-5 ms-5">
-        <a class="nav-link active" aria-current="page" href="purchasetickets2.html">SUBMIT</a>
+    <button class="btn btn-lg btn-primary my-5 ms-5">
+        <a class="nav-link active" aria-current="page" href="purchasetickets2.html">Next</a>
     </button>
     </div>`
     document.getElementById('businesses-at-market-table').innerHTML = html;
@@ -113,7 +113,7 @@ function CreateCheckoutTable(pickedDate){
     <div class="container py-5 col-md-8">
         <header>
             <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 class="display-4 fw-normal text-body-emphasis">${pickedDate}</h1>
+                <h1 class="display-4 fw-normal text-body-emphasis">${localStorage.getItem('pickedLocation')}: ${localStorage.getItem('pickedDate')}</h1>
                 <p class="fs-5 text-body-secondary">Please select how many of each ticket you would like to purchase</p>
             </div>
         </header>
@@ -168,9 +168,9 @@ function CreateCheckoutTable(pickedDate){
                 </tbody>
             </table>
             <div class="center-container">
-            <button class="btn btn-secondary my-5 ms-5"><a class="dropdown-item" href="purchasetickets1.html">&#8592;</a></button>
-                <button class="btn btn-primary my-5 ms-5">
-                    <a class="nav-link active" aria-current="page" href="#" onclick="SubmitTickets()">SUBMIT</a>
+            <button class="btn btn-lg btn-secondary my-5 ms-5"><a class="dropdown-item" href="purchasetickets1.html">&#8592;</a></button>
+                <button class="btn btn-lg btn-primary my-5 ms-5">
+                    <a class="nav-link active" aria-current="page" href="#" onclick="SubmitTickets()">Next</a>
                 </button>
             </div>
 
@@ -318,7 +318,7 @@ function SubmitTickets(){
       </div>
     </div>
 
-    <button class="btn btn-secondary my-5 ms-5"><a class="dropdown-item" href="./purchasetickets2.html">&#8592;</a></button>
+    <button class="btn btn-lg btn-secondary my-5 ms-5"><a class="dropdown-item" href="./purchasetickets2.html">&#8592;</a></button>
   </main>
 
   <footer class="my-5 pt-5 text-body-secondary text-center text-small">

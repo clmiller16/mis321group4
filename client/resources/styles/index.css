@@ -2,6 +2,10 @@
     font-size: 30px;
 }
 
+.person-icon{
+    font-size: 30px;
+}
+
 .center-container {
     display: flex;
     align-items: center;
@@ -19,5 +23,10 @@
 
 .black{
     color: black;
+}
+
+.small{
+    max-width: 50px;
+    max-height: 50px;
 }
 
