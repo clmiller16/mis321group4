@@ -320,7 +320,7 @@ function SubmitTickets(){
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" onclick="CompletePurchase()" type="submit">Submit Order</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Submit Order</button>
         </form>
       </div>
     </div>
