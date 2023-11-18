@@ -22,6 +22,12 @@ async function GetAllAttends(){
     return attends;
 }
 
+async function GetAllAttendees(){
+  let response = await fetch('http://localhost:5124/api/attendance');
+  attends = await response.json();
+  return attends;
+}
+
 async function handleOnLoad(){
     await createDropdown()
 }
@@ -51,6 +57,7 @@ async function createDropdown(){
 async function GetBusinessPerDate(id, date, location){
     localStorage.setItem('pickedDate', date)
     localStorage.setItem('pickedLocation', location)
+    localStorage.setItem('eventID', id)
     console.log(id)
     console.log(date)
     let businesses = await GetAllBusinesses();
@@ -376,14 +383,39 @@ async function CompletePurchase(){
     let formResult = {firstName: document.getElementById('firstName').value, lastName: document.getElementById('lastName').value, email: document.getElementById('email').value, password: document.getElementById('password').value, creditCard: document.getElementById('cc-number').value};
     console.log(formResult)
     
-    let newUrl ='http://localhost:5124/api/attendance'
+    let attendeeUrl ='http://localhost:5124/api/attendance'
+    let transactionUrl = 'http://localhost:5124/api/transaction'
 
-    await fetch(newUrl, {
+    let foundID;
+
+    // it currently posting the attendee info twice
+
+    await fetch(attendeeUrl, {
         method: "POST",
         body: JSON.stringify(formResult),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
+    })
+
+    
+    // get all the attendees and find the id of the one who's email you just posted 
+    let accounts = await GetAllAttendees();
+    accounts.forEach(function(a){
+        if(a.email == document.getElementById('email').value){
+          foundID = a.attendeeID
+        }
+    })
+
+
+    let transactionObject = {totalCost: (adultTickets * 5) + (childTickets*2) + (studentTickets*3) + (seniorTickets*3), numAdultTickets: adultTickets, numChildTickets: childTickets, numSeniorTickets: seniorTickets, numStudentTickets: studentTickets, eventID: localStorage.getItem('eventID'), attendeeID: foundID}
+
+    await fetch(transactionUrl, {
+      method: "POST",
+      body: JSON.stringify(transactionObject),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
     })
     
     ConfirmationPage()
@@ -395,6 +427,8 @@ async function CompletePurchase(){
 // I made some changes elsewhere in the code and that no longer worked (i think becuase i prevent the default event on the form now)
 // My solution was to try to save name in local storage and pull it...
 // that did not work
+
+// it seems to be working now...
 
 function ConfirmationPage(){
     let html = `

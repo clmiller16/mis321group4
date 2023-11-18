@@ -42,7 +42,7 @@ namespace api.utilities
             con.Open();
 
             // check line below
-            string stm = "INSERT INTO transaction (TotalCost, NumAdultTickets, NumChildTickets, NumSeniorTickets, NumStudentTickets, EventID, AttendeeID) VALUES (@TransactionID, @TotalCost, @NumAdultTickets, @NumChildTickets, @NumSeniorTickets, @NumStudentTickets, @EventID, @AttendeeID);";
+            string stm = "INSERT INTO transaction (TotalCost, NumAdultTickets, NumChildTickets, NumSeniorTickets, NumStudentTickets, EventID, AttendeeID) VALUES (@TotalCost, @NumAdultTickets, @NumChildTickets, @NumSeniorTickets, @NumStudentTickets, @EventID, @AttendeeID);";
             using var cmd = new MySqlCommand(stm, con);
             
             // cmd.Parameters.AddWithValue("@TransactionID", transactions.TransactionID);
