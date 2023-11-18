@@ -16,3 +16,8 @@
     position: relative;
     filter: blur(.5px); /* Adjust the blur radius as needed */
   }
+
+.black{
+    color: black;
+}
+
