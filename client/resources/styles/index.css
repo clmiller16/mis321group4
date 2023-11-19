@@ -30,3 +30,30 @@
     max-height: 50px;
 }
 
+.background-color{
+    background-color: #333333;
+}
+
+.white{
+    background-color: white;
+}
+
+.white-text{
+    color: white;
+}
+
+.limit-size{
+    /* max-width: 50%;
+    max-height: 50%;
+    align-items: center;
+    top: 50%;
+    left: 50%; */
+}
+
+.extend{
+    width: 800px;
+}
+
+.biggerfont{
+    font-size: x-large;
+}
