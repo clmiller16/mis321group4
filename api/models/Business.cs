@@ -12,4 +12,9 @@ namespace api.models
         public string Logo {get; set;}
         
     }
+        public class BusinessLogin
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
 }
