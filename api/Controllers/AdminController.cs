@@ -55,5 +55,21 @@ namespace api.Controllers
         public void Delete(int id)
         {
         }
+        
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody] Admin loginAdmin)
+        {
+            var admins = AdminUtility.GetAdminData();
+            var admin = admins.FirstOrDefault(a => a.Email == loginAdmin.Email && a.Password == loginAdmin.Password);
+            
+            if (admin != null)
+            {
+                return Ok(new { success = true });
+            }
+            else
+            {
+                return Ok(new { success = false });
+            }
+        }
     }
 }

@@ -55,5 +55,21 @@ namespace api.Controllers
         public void Delete(int id)
         {
         }
+
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody] BusinessLogin loginBusiness)
+        {
+            var businesses = BusinessUtility.GetBusinessData();
+            var business = businesses.FirstOrDefault(b => b.Email == loginBusiness.Email && b.Password == loginBusiness.Password);
+            
+            if (business != null)
+            {
+                return Ok(new { success = true, businessid = business.BusinessID });
+            }
+            else
+            {
+                return Ok(new { success = false });
+            }
+        }
     }
 }
