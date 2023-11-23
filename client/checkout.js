@@ -283,7 +283,7 @@ function SubmitTickets(){
           <hr class="my-4">
 
           <div class="row gy-3">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label for="cc-name" class="form-label">Name on card</label>
               <input type="text" class="form-control" id="cc-name" placeholder="" required>
               <small class="text-body-secondary">Full name as displayed on card</small>
@@ -292,12 +292,17 @@ function SubmitTickets(){
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label for="cc-number" class="form-label">Credit card number</label>
               <input type="text" class="form-control" id="cc-number" placeholder="" required>
               <div class="invalid-feedback">
                 Credit card number is required
               </div>
+            </div>
+
+            <div id="creditCardLogo" class="col-md-2">
+              <label for="cc-number" class="form-label">Brand</label>
+              <img class="limit-size" src="" alt="None entered yet">
             </div>
 
             <!-- <div class="col-md-3">
@@ -343,6 +348,34 @@ function SubmitTickets(){
     console.log('child tickets = ' + childTickets)
     console.log('senior tickets = ' + seniorTickets)
     console.log('student tickets = ' + studentTickets)
+
+
+    const ccNumberInput = document.getElementById('cc-number');
+    ccNumberInput.addEventListener('input', function () {
+      const ccNumberValue = ccNumberInput.value.replace(/\D/g, '');
+        if (ccNumberValue.length == 16) {
+            console.log('Input event triggered!');
+            if (ValidateMastercard()) {
+              console.log("woo hoo, you entered a Mastercard");
+              
+              let html = `<div id="creditCardLogo" class="col-md-2">
+              <label for="cc-number" class="form-label">Brand</label>
+              <img class="limit-size" src="./resources/styles/Mastercard-logo.png" alt="Mastercard">
+            </div>`
+              document.getElementById("creditCardLogo").innerHTML = html;
+            } else if (ValidateVisa()){
+              console.log("wee, you entered a VISA")
+
+              let html = `<div id="creditCardLogo" class="col-md-2">
+              <label for="cc-number" class="form-label">Brand</label>
+              <img class="limit-size" src="./resources/styles/visa-logo-800x450.webp" alt="VISA">
+              </div>`
+              document.getElementById("creditCardLogo").innerHTML = html;
+            } else if(ValidateAmericanExpress()){
+              console.log("woop, you entered an American Express card")
+            }
+        }
+    });
 }
 
 function AddTicket(type, pickedDate){
@@ -388,7 +421,10 @@ async function CompletePurchase(){
 
     let foundID;
 
-    // it currently posting the attendee info twice
+    if (!ValidateGeneral()) {
+      alert("Invalid credit card number. Please enter a valid 16-digit credit card number.");
+      return; 
+    }
 
     await fetch(attendeeUrl, {
         method: "POST",
@@ -419,6 +455,30 @@ async function CompletePurchase(){
     })
     
     ConfirmationPage()
+}
+
+function ValidateGeneral() { 
+  let value = document.getElementById("cc-number").value; // Update this line to get the credit card input by its ID
+  const regEx = /^[0-9]{16}$/; // Assuming a valid credit card number is a 16-digit number
+  return regEx.test(value); 
+}
+
+function ValidateMastercard() { 
+  let value = document.getElementById("cc-number").value; // Update this line to get the credit card input by its ID
+  const regEx = /^5[1-5][0-9]{14}|^(222[1-9]|22[3-9]\\d|2[3-6]\\d{2}|27[0-1]\\d|2720)[0-9]{12}$/; // Assuming a valid credit card number is a 16-digit number
+  return regEx.test(value); 
+}
+
+function ValidateVisa() { 
+  let value = document.getElementById("cc-number").value; // Update this line to get the credit card input by its ID
+  const regEx = /^4[0-9]{12}(?:[0-9]{3})?$/; // Assuming a valid credit card number is a 16-digit number
+  return regEx.test(value); 
+}
+
+function ValidateAmericanExpress() { 
+  let value = document.getElementById("cc-number").value; // Update this line to get the credit card input by its ID
+  const regEx = /^3[47][0-9]{13}$/; // Assuming a valid credit card number is a 16-digit number
+  return regEx.test(value); 
 }
 
 
