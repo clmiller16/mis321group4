@@ -301,8 +301,8 @@ function SubmitTickets(){
             </div>
 
             <div id="creditCardLogo" class="col-md-2">
-              <label for="cc-number" class="form-label">Brand</label>
-              <img class="limit-size" src="" alt="None entered yet">
+              <label for="cc-number" class="form-label"></label>
+              <img class="limit-size" src="" alt="">
             </div>
 
             <!-- <div class="col-md-3">
@@ -353,13 +353,13 @@ function SubmitTickets(){
     const ccNumberInput = document.getElementById('cc-number');
     ccNumberInput.addEventListener('input', function () {
       const ccNumberValue = ccNumberInput.value.replace(/\D/g, '');
-        if (ccNumberValue.length == 16) {
+        if (ccNumberValue.length == 16 || ccNumberValue.length == 15) {
             console.log('Input event triggered!');
             if (ValidateMastercard()) {
               console.log("woo hoo, you entered a Mastercard");
               
               let html = `<div id="creditCardLogo" class="col-md-2">
-              <label for="cc-number" class="form-label">Brand</label>
+              <label for="cc-number" class="form-label"></label>
               <img class="limit-size" src="./resources/styles/Mastercard-logo.png" alt="Mastercard">
             </div>`
               document.getElementById("creditCardLogo").innerHTML = html;
@@ -367,12 +367,18 @@ function SubmitTickets(){
               console.log("wee, you entered a VISA")
 
               let html = `<div id="creditCardLogo" class="col-md-2">
-              <label for="cc-number" class="form-label">Brand</label>
+              <label for="cc-number" class="form-label"></label>
               <img class="limit-size" src="./resources/styles/visa-logo-800x450.webp" alt="VISA">
               </div>`
               document.getElementById("creditCardLogo").innerHTML = html;
             } else if(ValidateAmericanExpress()){
               console.log("woop, you entered an American Express card")
+
+              let html = `<div id="creditCardLogo" class="col-md-2">
+              <label for="cc-number" class="form-label"></label>
+              <img class="limit-size" src="./resources/styles/4-you-might-not-notice-amex-new-brand.jpg.png" alt="American Express">
+              </div>`
+              document.getElementById("creditCardLogo").innerHTML = html;
             }
         }
     });
