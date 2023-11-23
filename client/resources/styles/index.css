@@ -57,3 +57,29 @@
 .biggerfont{
     font-size: x-large;
 }
+
+.backgroundimage{
+    background-image: url('https://lakewoodranch.com/wp-content/uploads/2018/12/farmmarket.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 125vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(30px);
+}
+
+.section{
+    margin-bottom: 50px;
+}
+
+.limit-height{
+    height: 100vh;
+}
+
+/* ANOTHER OPTION FOR THE BACKGROUND IMAGE */
+/* https://content.civicplus.com/api/assets/577e38ef-4bfa-4269-b689-fbffa644ca5d?cache=1800&width=1511&mode=min */
