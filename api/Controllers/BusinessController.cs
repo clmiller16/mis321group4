@@ -46,8 +46,13 @@ namespace api.Controllers
 
         // PUT: api/Business/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Business business)
         {
+            Console.WriteLine("HERE " + id + " " + business);
+            if (business != null)
+            {
+                BusinessUtility.UpdateBusinessData(business);
+            }
         }
 
         // DELETE: api/Business/5

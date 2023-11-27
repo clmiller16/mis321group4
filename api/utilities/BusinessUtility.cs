@@ -58,5 +58,37 @@ namespace api
 
             con.Close();
         }
+
+
+        public static void UpdateBusinessData(Business business){
+            Database db = new Database();
+
+            using var con = new MySqlConnection(db.cs);
+            con.Open();
+
+            // check line below
+            string stm = "UPDATE business set " +
+            "CompanyName = @CompanyName, " +
+            "FirstName = @FirstName, " +
+            "LastName = @LastName, " +
+            "ProductType = @ProductType, " +
+            "Email = @Email, " +
+            "Password = @Password, " + 
+            "Logo = @Logo  where BusinessID = @BusinessID";
+            using var cmd = new MySqlCommand(stm, con);
+            
+            cmd.Parameters.AddWithValue("@BusinessID", business.BusinessID);
+            cmd.Parameters.AddWithValue("@CompanyName", business.CompanyName);
+            cmd.Parameters.AddWithValue("@FirstName", business.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", business.LastName);
+            cmd.Parameters.AddWithValue("@ProductType", business.ProductType);
+            cmd.Parameters.AddWithValue("@Email", business.Email);
+            cmd.Parameters.AddWithValue("@Password", business.Password);
+            cmd.Parameters.AddWithValue("@Logo", business.Logo);
+
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
     }
 }

@@ -57,52 +57,39 @@
    
       <div class="py-5 text-center">
         <h4 class="mb-3">Business Info</h4>
-        <form class="needs-validation" novalidate>
+        <form id="business-signup-form" class="needs-validation" novalidate>
           <div class="py-5 text-center">
             <div class="col-12">
-              <label for="businessName" class="form-label">Business Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="Big Al's Market" value="" required>
+              <label for="companyName" class="form-label">Business Name</label>
+              <input type="text" class="form-control" id="company-name" placeholder="Big Al's Market" value="" required>
               <div class="invalid-feedback">
                 Valid business name is required.
               </div>
             </div>
 
             <div class="col-12">
-              <label for="username" class="form-label">Business Email</label>
+              <label for="first-name" class="form-label">First Name</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="username" placeholder="bigal@farmersmarket.com" required>
+                <input type="text" class="form-control" id="first-name" placeholder="Jacob" required>
               <div class="invalid-feedback">
-                  Your email is required.
+                  Your first name is required.
                 </div>
               </div>
             </div>
 
             <div class="col-12">
-              <label for="email" class="form-label">Business Address <span class="text-body-secondary"></span></label>
+              <label for="last-name" class="form-label">Last Name <span class="text-body-secondary"></span></label>
+              <input type="email" class="form-control" id="last-name" placeholder="Stocks">
+              <div class="invalid-feedback">
+                Please enter a valid last name.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Business Email <span class="text-body-secondary"></span></label>
               <input type="email" class="form-control" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
-                Please enter a valid address.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="city" class="form-label">City</label>
-              <input type="text" class="form-control" id="address" placeholder="Tuscaloosa" required>
-              <div class="invalid-feedback">
-                Please enter your city.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="state" class="form-label">State <span class="text-body-secondary"></span></label>
-              <input type="text" class="form-control" id="address2" placeholder="AL, CA, GA, etc." required>
-            </div>
-
-            <div class="col-12">
-              <label for="zip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="state" placeholder="00000" required>
-              <div class="invalid-feedback">
-                Please enter a valid zip.
+                Please enter a valid email address.
               </div>
             </div>
 
@@ -129,11 +116,14 @@
             </div>
           </div>  
           
-            <label for="logoupload" class="form-label">Logo Upload</label>
-            <form action="/action_page.php">
-              <input type="file" id="myFile" name="filename">
-              <input type="submit">
-            </form>
+            
+          <div class="col-12">
+            <label for="logo" class="form-label">Logo</label>
+            <input type="text" class="form-control" id="logo" placeholder="https://logo.png" required>
+            <div class="invalid-feedback">
+              Please enter your link to the logo.
+            </div>
+          </div>
           
 
             
@@ -157,6 +147,48 @@
     </ul>
   </footer>
 </div>
+
+<script>
+  const businessSignupForm = document.getElementById('business-signup-form');
+
+  const businessNameInput = document.getElementById('company-name');
+  const businessFirstNameInput = document.getElementById('first-name');
+  const businessLastNameInput = document.getElementById('last-name');
+  const businessEMailInput = document.getElementById('email');
+  const businessPasswordInput = document.getElementById('password');
+  const businessTypeInput = document.getElementById('businesstype');
+  const businessLogoInput = document.getElementById('logo');
+
+  businessSignupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    signUp();
+  });
+
+  function signUp() {
+    const companyName = businessNameInput.value;
+    const firstName = businessFirstNameInput.value;
+    const lastName = businessLastNameInput.value;
+    const email = businessEMailInput.value;
+    const password = businessPasswordInput.value;
+    const productType = businessTypeInput.value;
+    const logo = businessLogoInput.value;
+
+    var bodyJSON =  JSON.stringify({ companyName, firstName, lastName, email, password, productType, logo });
+
+    fetch('http://localhost:5124/api/Business', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: bodyJSON,
+    })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "businesshome.html"
+        }
+      })
+  }
+</script>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
