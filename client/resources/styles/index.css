@@ -81,5 +81,11 @@
     height: 100vh;
 }
 
+.navbar{
+    background-color: transparent;
+}
+
+
+
 /* ANOTHER OPTION FOR THE BACKGROUND IMAGE */
 /* https://content.civicplus.com/api/assets/577e38ef-4bfa-4269-b689-fbffa644ca5d?cache=1800&width=1511&mode=min */
