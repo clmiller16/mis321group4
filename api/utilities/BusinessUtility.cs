@@ -67,14 +67,14 @@ namespace api
             con.Open();
 
             // check line below
-            string stm = "UPDATE business set " +
+            string stm = "UPDATE business SET " +
             "CompanyName = @CompanyName, " +
             "FirstName = @FirstName, " +
             "LastName = @LastName, " +
             "ProductType = @ProductType, " +
             "Email = @Email, " +
             "Password = @Password, " + 
-            "Logo = @Logo  where BusinessID = @BusinessID";
+            "Logo = @Logo  WHERE BusinessID = @BusinessID";
             using var cmd = new MySqlCommand(stm, con);
             
             cmd.Parameters.AddWithValue("@BusinessID", business.BusinessID);
