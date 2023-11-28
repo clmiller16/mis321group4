@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jwall\\Desktop\\MIS321_Code\\group_project\\mis321group4\\api\\api.csproj": {}
+    "/Users/carsonmiller/Desktop/321/groupproject/api/api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jwall\\Desktop\\MIS321_Code\\group_project\\mis321group4\\api\\api.csproj": {
+    "/Users/carsonmiller/Desktop/321/groupproject/api/api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jwall\\Desktop\\MIS321_Code\\group_project\\mis321group4\\api\\api.csproj",
+        "projectUniqueName": "/Users/carsonmiller/Desktop/321/groupproject/api/api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\jwall\\Desktop\\MIS321_Code\\group_project\\mis321group4\\api\\api.csproj",
-        "packagesPath": "C:\\Users\\jwall\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jwall\\Desktop\\MIS321_Code\\group_project\\mis321group4\\api\\obj\\",
+        "projectPath": "/Users/carsonmiller/Desktop/321/groupproject/api/api.csproj",
+        "packagesPath": "/Users/carsonmiller/.nuget/packages/",
+        "outputPath": "/Users/carsonmiller/Desktop/321/groupproject/api/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jwall\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/carsonmiller/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     }

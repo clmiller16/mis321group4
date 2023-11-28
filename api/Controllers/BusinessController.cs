@@ -48,7 +48,6 @@ namespace api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Business business)
         {
-            Console.WriteLine("HERE " + id + " " + business);
             if (business != null)
             {
                 BusinessUtility.UpdateBusinessData(business);
