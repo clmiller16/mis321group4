@@ -9,13 +9,13 @@
     <title>Big Al's Farmers Market</title>
     <link rel="icon" type="image/x-icon" href="./resources/styles/big-als-farmers-market-high-resolution-logo-transparent.png">
     <style>
-        h1 {
+        /* h1 {
             text-align: center;
             background-color: gray;
             margin-top: 20px;
             margin-bottom: 20px;
             padding: 10px;
-        }
+        } */
 
         .dropdown-center {
             text-align: center;
@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<body onload="handleOnLoad()">
+<body onload="handleOnLoad('b')">
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
         <div class="container-fluid">
@@ -57,11 +57,15 @@
         </div>
     </nav>
 
-    <h1>View Businesses</h1>
-
     <div id="date-select"></div>
     <div id="businesses-at-market-table"></div>
+    <div id="business-summary"></div>
 
+
+
+    <button class="btn btn-lg btn-secondary my-5 ms-5"><a class="dropdown-item" href="adminhome.html">&#8592;</a></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="./admin.js"></script>
 </body>
 </html>
