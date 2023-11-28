@@ -23,7 +23,10 @@ namespace api.database
             password = "qhefqssrcg0jyw5t";
 
             cs = $"server={host};user={username};database={database};port={port};password={password}";
-
         }
+
+        // public Database(){
+        //     cs = $"Server={Environment.GetEnvironmentVariable("DB_HOST")};Port={Environment.GetEnvironmentVariable("DB_PORT")};Database={Environment.GetEnvironmentVariable("DB_NAME")};User ID={Environment.GetEnvironmentVariable("DB_USER")};Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};";
+        // }
     }
 }

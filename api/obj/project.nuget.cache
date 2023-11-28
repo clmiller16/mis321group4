@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ETa8crPxp3vRCHdGRN6X/aVHmYXn3PhoeDZFB/PvRyxJqxXEnsUacAa9cY2RUiKr7P6XFvKDYZJ5dUSKu273HA==",
+  "dgSpecHash": "pAquk+4jIFVaj2lOgjIvk8hllIr68G1b/qvliiPnOCAOFikrai1AEYBAQ6G7VZgK2N+E8y/m1M7LVmQFcFT7wQ==",
   "success": true,
   "projectFilePath": "/Users/carsonmiller/Desktop/321/groupproject/api/api.csproj",
   "expectedPackageFiles": [
@@ -78,8 +78,12 @@
     "/Users/carsonmiller/.nuget/packages/microsoft.diasymreader/1.4.0/microsoft.diasymreader.1.4.0.nupkg.sha512",
     "/Users/carsonmiller/.nuget/packages/microsoft.dotnet.scaffolding.shared/7.0.11/microsoft.dotnet.scaffolding.shared.7.0.11.nupkg.sha512",
     "/Users/carsonmiller/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/carsonmiller/.nuget/packages/microsoft.extensions.configuration/8.0.0/microsoft.extensions.configuration.8.0.0.nupkg.sha512",
+    "/Users/carsonmiller/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "/Users/carsonmiller/.nuget/packages/microsoft.extensions.configuration.environmentvariables/8.0.0/microsoft.extensions.configuration.environmentvariables.8.0.0.nupkg.sha512",
     "/Users/carsonmiller/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "/Users/carsonmiller/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "/Users/carsonmiller/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/Users/carsonmiller/.nuget/packages/microsoft.net.stringtools/17.3.2/microsoft.net.stringtools.17.3.2.nupkg.sha512",
     "/Users/carsonmiller/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/carsonmiller/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
