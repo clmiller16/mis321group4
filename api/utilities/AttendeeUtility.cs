@@ -49,7 +49,7 @@ namespace api
             cmd.Parameters.AddWithValue("@LastName", attendee.LastName);
             cmd.Parameters.AddWithValue("@Email", attendee.Email);
             cmd.Parameters.AddWithValue("@Password", attendee.Password);
-            cmd.Parameters.AddWithValue("@CreditCard", attendee.CreditCard);
+            cmd.Parameters.AddWithValue("@CreditCard", "not saving");
 
             cmd.ExecuteNonQuery();
 
