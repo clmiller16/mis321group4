@@ -44,6 +44,8 @@ namespace api.utilities
             cmd.Parameters.AddWithValue("@Email", admin.Email);
             cmd.Parameters.AddWithValue("@Password", admin.Password);
 
+
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();

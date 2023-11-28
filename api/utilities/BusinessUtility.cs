@@ -54,6 +54,7 @@ namespace api
             cmd.Parameters.AddWithValue("@Password", business.Password);
             cmd.Parameters.AddWithValue("@Logo", business.Logo);
 
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();
@@ -86,6 +87,7 @@ namespace api
             cmd.Parameters.AddWithValue("@Password", business.Password);
             cmd.Parameters.AddWithValue("@Logo", business.Logo);
 
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();

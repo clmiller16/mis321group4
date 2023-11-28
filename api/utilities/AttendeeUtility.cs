@@ -51,6 +51,7 @@ namespace api
             cmd.Parameters.AddWithValue("@Password", attendee.Password);
             cmd.Parameters.AddWithValue("@CreditCard", "not saving");
 
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();

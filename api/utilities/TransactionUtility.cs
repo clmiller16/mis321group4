@@ -54,6 +54,7 @@ namespace api.utilities
             cmd.Parameters.AddWithValue("@EventID", transactions.EventID);
             cmd.Parameters.AddWithValue("@AttendeeID", transactions.AttendeeID);
 
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();

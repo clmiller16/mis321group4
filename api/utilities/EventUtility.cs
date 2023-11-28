@@ -44,6 +44,7 @@ namespace api.utilities
             cmd.Parameters.AddWithValue("@Date", events.Date);
             cmd.Parameters.AddWithValue("@Location", events.Location);
 
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();

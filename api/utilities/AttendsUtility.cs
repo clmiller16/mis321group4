@@ -44,6 +44,8 @@ namespace api.utilities
             cmd.Parameters.AddWithValue("@EventID", plural.EventID);
             cmd.Parameters.AddWithValue("@BusinessID", plural.BusinessID);
 
+
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();
