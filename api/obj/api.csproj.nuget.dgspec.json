@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[6.4.0, )"
             },
+            "dotnetenv": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
             "mysql.data": {
               "target": "Package",
               "version": "[8.2.0, )"

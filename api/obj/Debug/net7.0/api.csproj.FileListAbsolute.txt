@@ -949,3 +949,5 @@ C:/Users/jwall/Desktop/MIS321_Code/group_project/mis321group4/api/obj/Debug/net7
 /Users/carsonmiller/Desktop/321/groupproject/api/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll
 /Users/carsonmiller/Desktop/321/groupproject/api/bin/Debug/net7.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll
 /Users/carsonmiller/Desktop/321/groupproject/api/bin/Debug/net7.0/Microsoft.Extensions.Primitives.dll
+/Users/carsonmiller/Desktop/321/groupproject/api/bin/Debug/net7.0/DotNetEnv.dll
+/Users/carsonmiller/Desktop/321/groupproject/api/bin/Debug/net7.0/Sprache.dll
