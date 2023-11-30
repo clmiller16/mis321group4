@@ -209,8 +209,6 @@ async function EditAttends(eventID, boothNumber)
 async function DeleteAttends(eventID, boothNumber)
 {
   attends = {BoothLocation: boothNumber, EventID: eventID, BusinessID: sessionStorage.getItem('business-id')}
-  console.log("I am deleting")
-  console.log(attends)
   try
   {
     await fetch(`http://localhost:5124/api/Attends/${eventID}/${sessionStorage.getItem('business-id')}`, {
