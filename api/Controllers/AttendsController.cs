@@ -38,20 +38,33 @@ namespace api.Controllers
 
         // POST: api/Attends
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Attends attends)
         {
+            if(attends != null)
+            {
+                AttendsUtility.InsertAttendsData(attends);
+            }
         }
 
         // PUT: api/Attends/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{eventID}/{businessID}")]
+        public void Put([FromBody] Attends attends)
         {
+            if (attends != null)
+            {
+                AttendsUtility.EditAttendance(attends);
+            }
         }
 
         // DELETE: api/Attends/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{eventID}/{businessID}")]
+        public void Delete(Attends attends)
         {
+            if (attends != null)
+            {
+                AttendsUtility.DeleteAttends(attends);
+            }
+            
         }
     }
 }

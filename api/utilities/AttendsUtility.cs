@@ -50,5 +50,42 @@ namespace api.utilities
 
             con.Close();
         }
+        public static void EditAttendance(Attends attends) {
+            Database db = new Database();
+
+            using var con = new MySqlConnection(db.cs);
+            con.Open();
+
+            string stm = @"UPDATE attends SET BoothLocation = @BoothLocation WHERE EventID = @EventID AND BusinessID = @BusinessID";
+
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.Parameters.AddWithValue("@BoothLocation", attends.BoothLocation);
+            cmd.Parameters.AddWithValue("@EventID", attends.EventID);
+            cmd.Parameters.AddWithValue("@BusinessID", attends.BusinessID);
+
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
+
+        public static void DeleteAttends(Attends attends)
+        {
+            Database db = new Database();
+
+            using var con = new MySqlConnection(db.cs);
+            con.Open();
+
+            string stm = @"DELETE FROM attends WHERE EventID = @EventID AND BusinessID = @BusinessID";
+
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.Parameters.AddWithValue("@EventID", attends.EventID);
+            cmd.Parameters.AddWithValue("@BusinessID", attends.BusinessID);
+
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
     }
 }
