@@ -64,6 +64,7 @@ namespace api.utilities
             cmd.Parameters.AddWithValue("@EventID", attends.EventID);
             cmd.Parameters.AddWithValue("@BusinessID", attends.BusinessID);
 
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();
@@ -83,6 +84,7 @@ namespace api.utilities
             cmd.Parameters.AddWithValue("@EventID", attends.EventID);
             cmd.Parameters.AddWithValue("@BusinessID", attends.BusinessID);
 
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             con.Close();
