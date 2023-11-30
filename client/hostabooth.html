@@ -60,19 +60,15 @@
         <img src="./resources/styles/Map_2017_2-e1588350571960.jpg" alt="BOOTH MAP">
     </div> -->
 
-    <div class="py-5 text-center">
-        <form onsubmit="return bookBooth()">
-            <label for="booth">Choose a booth:</label>
+    <div class="py-5 text-center" id="boothdropdown">   
+        <form id="boothselector">
+            <label for="booth" id="chooseabooth">Choose an event above</label>
             <select id="booth" name="booth">
-                <!-- JavaScript to dynamically generate booth options -->
-                <script>
-                    for (let i = 1; i <= 193; i++) {
-                        document.write(`<option value='booth${i}'>Booth ${i}</option>`);
-                    }
-                </script>
+                <option>Please Select A Event</option>
             </select>
-            <input type="submit" value="Book Booth" class="btn btn-primary">
-        </form>
+            <input type="submit" value="Book Booth" class="btn btn-primary" id="bookBoothButton" style="display: none;">
+            <input type="submit" value="Unregister" class="btn btn-danger" id="deleteBoothButton" style="display: none;">
+        </form> 
     </div>
 
     <button class="btn btn-secondary my-5 ms-5"><a class="dropdown-item" href="hostabooth.html">&#8592;</a></button>
@@ -81,47 +77,6 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script src="./hostabooth.js"></script>
-    <script>
-        // Function to handle booth booking
-        async function bookBooth() {
-            const selectedBooth = document.getElementById('booth').value;
-            const eventId = getSelectedEventId(); // Implement this function to get the selected event ID
-
-            // Use fetch or any other method to send the booking information to the server
-            try {
-                const response = await fetch('http://localhost:5124/api/attends', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        eventId: eventId,
-                        booth: selectedBooth,
-                    }),
-                });
-
-                if (response.ok) {
-                    alert('Booth booked successfully!');
-                } else {
-                    alert('Failed to book booth. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error booking booth:', error);
-                alert('An error occurred while booking the booth. Please try again.');
-            }
-
-            // Prevent the form from submitting and refreshing the page
-            return false;
-        }
-
-        // Implement this function to get the selected event ID
-        function getSelectedEventId() {
-            // Add logic to retrieve the selected event ID
-            // For now, I'm assuming you have a function or variable that holds the selected event ID
-            // Replace the following line with your actual implementation
-            return '123'; // Example value, replace with your logic
-        }
-    </script>
 </body>
 
 </html>

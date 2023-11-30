@@ -26,7 +26,9 @@ async function GetAllEvents() {
 
 async function CreateTable() {
   try {
-    let events = await GetAllEvents();
+    let events = await GetAllEvents()
+    let attends = await GetAllAttends()
+    let BusinessID = sessionStorage.getItem('business-id').toString()
     let html = `
       <div class="container my-5 text-center">
         <h1 class="display-5 fw-bold">Upcoming Events</h1>
@@ -37,19 +39,21 @@ async function CreateTable() {
                 <th scope="col">Event ID</th>
                 <th scope="col">Date</th>
                 <th scope="col">Location</th>
-                <th scope="col">Select</th>
+                <th scope="col">Select/Edit</th>
               </tr>
             </thead>
             <tbody id="myTableBody" class="table-group-divider">`;
 
     events.forEach(function (e) {
+      let isAttending = attends.some(a => a.eventID === e.eventID && a.businessID.toString() === BusinessID)
+      let buttonText = isAttending ? 'Edit' : 'Select'
       html += `
         <tr>
           <td>${e.eventID}</td>
           <td>${e.date}</td>
           <td>${e.location}</td>
           <td>
-            <button class="btn btn-primary" onclick="SelectEvent('${e.eventID}')">Select</button>
+            <button class="btn btn-primary" onclick="SelectEvent('${e.eventID}', '${buttonText}')">${buttonText}</button>
           </td>
         </tr>`;
     });
@@ -64,78 +68,163 @@ async function CreateTable() {
   }
 }
 
-async function SelectEvent(id) {
-  try {
-    let availableBooths = await GetAvailableBooths(id);
+async function SelectEvent(id, action) {
+  if (action === 'Edit')
+  {
+      let businessId = sessionStorage.getItem('business-id');
+      let allBooths = await GetAllAttends();
+     
+      let businessBooth = allBooths.find(booth => booth.eventID == id && booth.businessID.toString() == businessId);
+      
+      document.getElementById('chooseabooth').textContent = `For Event ${id}, your current booth is Booth ${businessBooth.boothLocation}`;
 
-    let html = `
-      <div class="container">
-        <img src="./resources/styles/Map_2017_2-e1588350571960.jpg" alt="failed to load">
-        <div>
-          <div class="dropdown text-center">
-            <ul class="dropdown-menu" id="dropdown-container" style="max-height: 300px; overflow-y: auto;">`;
+      let availableBooths = await GetAvailableBooths(id);
+      let boothSelect = document.getElementById('booth');
+      let form = document.querySelector('form')
+      boothSelect.innerHTML = ''; 
+  
+      availableBooths.forEach(function (booth) {
+        
+        let option = document.createElement('option');
+        option.value = booth; 
+        option.textContent = `Booth ${booth}`;
+        boothSelect.appendChild(option);
+      })
+    document.getElementById('bookBoothButton').style.display = 'inline';
+    document.getElementById('deleteBoothButton').style.display = 'inline';
 
-    availableBooths.forEach(function (booth) {
-      html += `<div class="container"><li><button class="btn btn-light" onclick="GetBusinessPerBooth('${booth.eventID}', '${booth.boothLocation}')">${booth.boothLocation}</button></li></div>`;
-    });
+    form.onsubmit = function(event) {
+      event.preventDefault(); 
+    };
 
-    html += `</ul>
-          </div>
-        </div>
-      </div>`;
+    document.getElementById('bookBoothButton').onclick = function() {
+      let selectedBooth = boothSelect.value;
+      EditAttends(id, selectedBooth)
+    };
 
-    document.getElementById('choose-booth').innerHTML = html;
-  } catch (error) {
-    console.error("Error fetching available booths:", error);
+    document.getElementById('deleteBoothButton').onclick = function() {
+      DeleteAttends(id, businessBooth.boothLocation); 
+    };
+  }
+  else{
+    try {
+      let availableBooths = await GetAvailableBooths(id);
+      let boothSelect = document.getElementById('booth');
+      let form = document.querySelector('form')
+      document.getElementById('chooseabooth').textContent = `Choose a booth for Event ${id}:`
+      boothSelect.innerHTML = ''; 
+  
+      availableBooths.forEach(function (booth) {
+        
+        let option = document.createElement('option');
+        option.value = booth; 
+        option.textContent = `Booth ${booth}`;
+        boothSelect.appendChild(option);
+      })
+  
+      document.getElementById('bookBoothButton').style.display = 'inline';
+  
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        let selectedBooth = boothSelect.value;
+        CreateNewAttends(id, selectedBooth)
+      });
+  
+    } catch (error) {
+      console.error("Error fetching available booths:", error)
+    }
   }
 }
+
+
 
 async function GetAvailableBooths(eventID) {
   try {
-    let allBooths = await GetAllBoothsForEvent(eventID);
-    let selectedBooths = await GetSelectedBooths(eventID);
-    let availableBooths = allBooths.filter(booth => !selectedBooths.includes(booth.boothLocation));
-    return availableBooths;
+    let totalBooths = Array.from({ length: 183 }, (_, i) => i + 1); //so we declare an array with number of booths here
+    let eventBooths = await GetSelectedBooths(eventID); //get selected booths here
+    let selectedBoothLocations = eventBooths.map(booth => booth.boothLocation) //converts selected
+    let availableBooths = totalBooths.filter(booth => !selectedBoothLocations.includes(booth.toString())); // remove the selected booths from the total booths here
+    return availableBooths; 
   } catch (error) {
     console.error("Error fetching available booths:", error);
-    return [];
-  }
-}
-
-async function GetAllBoothsForEvent(eventID) {
-  try {
-    const response = await fetch(`http://localhost:5124/api/attends?eventID=${eventID}`);
-    const data = await response.json();
-    return data; // Assuming data is an array of booths for the given event
-  } catch (error) {
-    console.error("Error fetching booths for the event:", error);
     return [];
   }
 }
 
 async function GetSelectedBooths(eventID) {
   try {
-    const response = await fetch(`http://localhost:5124/api/getSelectedBooths?eventID=${eventID}`);
-    const selectedBooths = await response.json();
-    return selectedBooths;
+    const allBooths = await GetAllAttends() 
+    const boothsFilteredByEvent = allBooths.filter(attends => attends.eventID == eventID)
+    return boothsFilteredByEvent;
   } catch (error) {
     console.error(`Error fetching selected booths for event ${eventID}:`, error);
     return [];
   }
 }
 
-async function BookBooth(eventID) {
+
+async function CreateNewAttends(eventID, boothNumber)
+{
+  attends = {BoothLocation: boothNumber, EventID: eventID, BusinessID: sessionStorage.getItem('business-id')}
   try {
-    // Implement the logic to book a booth (You may need to send a request to your server to update the database)
+    await fetch('http://localhost:5124/api/Attends', {
+      method: "POST",
+      headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(attends),})
+      sessionStorage.setItem('eventID', eventID)
+      sessionStorage.setItem('boothNumber', boothNumber)
+      window.location.href = 'businessboothconfirmation.html'
+      
+  } catch (error)
+  {
+    console.error(`Error creating new attends event`, error)
+  }
+}
 
-    // Assuming you have a function to update the database, replace the following line with the actual logic
-    await UpdateBoothBooking(eventID);
+async function EditAttends(eventID, boothNumber)
+{
+  attends = {BoothLocation: boothNumber, EventID: eventID, BusinessID: sessionStorage.getItem('business-id')}
+  try
+  {
+    await fetch(`http://localhost:5124/api/Attends/${eventID}/${sessionStorage.getItem('business-id')}`, {
+      method: 'PUT',
+      headers: {
+        "content-type": "application/json"
+              },
+      body: JSON.stringify(attends),
+     })
+     sessionStorage.setItem('eventID', eventID)
+     sessionStorage.setItem('boothNumber', boothNumber)
+     window.location.href = 'businessboothconfirmation.html'
+  }
+  catch (error)
+  {
+    console.error(`Error editing attends event`, error)
+  }
+}
 
-    // Redirect to the confirmation page
-    window.location.href = 'businessboothconfirmation.html'; // Change 'confirmation.html' to the actual page you want to redirect to
-  } catch (error) {
-    console.error(`Error booking booth for event ID ${eventID}:`, error);
-    // Handle error, display a message, or redirect to an error page
+async function DeleteAttends(eventID, boothNumber)
+{
+  attends = {BoothLocation: boothNumber, EventID: eventID, BusinessID: sessionStorage.getItem('business-id')}
+  console.log("I am deleting")
+  console.log(attends)
+  try
+  {
+    await fetch(`http://localhost:5124/api/Attends/${eventID}/${sessionStorage.getItem('business-id')}`, {
+      method: 'DELETE',
+      headers: {
+        "content-type": "application/json"
+              },
+      body: JSON.stringify(attends),
+     })
+     handleOnLoad()
+  }
+  catch (error)
+  {
+    console.error(`Error deleting attends event`, error)
   }
 }
 
