@@ -432,17 +432,28 @@ async function CompletePurchase(){
       return; 
     }
 
-    await fetch(attendeeUrl, {
-        method: "POST",
-        body: JSON.stringify(formResult),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
+    // get all the attendees and find the id of the one who's email you are posting - used in next 2 fetch calls
+    let accounts = await GetAllAttendees();
+
+    let accountExists = false;
+    // to see if the account already exists
+    accounts.forEach(function(acc){
+      if(acc.email == formResult.email && acc.password == formResult.password){
+        accountExists = true;
+      }
     })
 
-    
-    // get all the attendees and find the id of the one who's email you just posted 
-    let accounts = await GetAllAttendees();
+    if(!accountExists){
+      await fetch(attendeeUrl, {
+          method: "POST",
+          body: JSON.stringify(formResult),
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      })
+    }
+
+    // for the form below
     accounts.forEach(function(a){
         if(a.email == document.getElementById('email').value){
           foundID = a.attendeeID
