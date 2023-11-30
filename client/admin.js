@@ -136,7 +136,7 @@ async function GetBusinessPerDate(id, date, location){
     console.log('the date selected = ' + pickedDate);
 
     html = `
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center mx-1">
         <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Total Number of Businesses Registered</h5>
@@ -157,6 +157,7 @@ async function GetBusinessPerDate(id, date, location){
 async function GetAttendeesPerDate(id, date, location){
     count = 0
     var totalPeople = 0
+    var totalRevenue = 0
     localStorage.setItem('pickedDate', date)
     localStorage.setItem('pickedLocation', location)
     localStorage.setItem('eventID', id)
@@ -186,7 +187,10 @@ async function GetAttendeesPerDate(id, date, location){
 
     transactions.forEach(function(a){
         if (a.eventID == id){
+            // math for reports
             totalPeople += a.numAdultTickets + a.numChildTickets + a.numSeniorTickets + a.numStudentTickets
+            totalRevenue += (a.numAdultTickets*5) + (a.numChildTickets*2) + (a.numSeniorTickets*3) + (a.numStudentTickets*3)
+
             count++
             html+=`
             <tr>
@@ -211,10 +215,10 @@ async function GetAttendeesPerDate(id, date, location){
     console.log('the date selected = ' + pickedDate);
 
     html = `
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center mx-1">
         <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Total Number of Purchasing Accounts</h5>
+                <h5 class="card-title">Purchasing Accounts</h5>
                 <p class="card-text">${count}</p>
             </div>
         </div>
@@ -223,7 +227,7 @@ async function GetAttendeesPerDate(id, date, location){
 
         <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Total Number of People Attending</h5>
+                <h5 class="card-title">People Attending</h5>
                 <p class="card-text">${totalPeople}</p>
             </div>
         </div>
@@ -232,10 +236,29 @@ async function GetAttendeesPerDate(id, date, location){
 
         <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Average Number of Tickets Purchased</h5>
+                <h5 class="card-title">Average # of Tickets</h5>
                 <p class="card-text">${totalPeople / count}</p>
             </div>
         </div>
+
+        <div style="width: 20px;"></div>
+
+        <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Total Revenue</h5>
+                <p class="card-text">$${totalRevenue}</p>
+            </div>
+        </div>
+
+        <div style="width: 20px;"></div>
+
+        <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Average Transaction Cost</h5>
+                <p class="card-text">$${totalRevenue / count}</p>
+            </div>
+        </div>
+
     </div>`
 
     document.getElementById('attendee-summary').innerHTML = html;
