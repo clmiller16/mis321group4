@@ -47,22 +47,26 @@ async function CreateTable() {
                 <th scope="col">Event ID</th>
                 <th scope="col">Date</th>
                 <th scope="col">Location</th>
-                <th scope="col">Select/Edit</th>
+                <th scope="col">Registration Status</th>
+                <th scope="col">Register/Edit Registration</th>
               </tr>
             </thead>
             <tbody id="myTableBody" class="table-group-divider">`;
 
     events.forEach(function (e) {
       let isAttending = attends.some(a => a.eventID === e.eventID && a.businessID.toString() === BusinessID)
-      let buttonText = isAttending ? 'Edit' : 'Select'
+      let buttonText = isAttending ? 'Edit' : 'Register'
+      let statusText = isAttending ? 'Registered' : 'Not Registered'
       html += `
         <tr>
           <td>${e.eventID}</td>
           <td>${e.date}</td>
           <td>${e.location}</td>
+          <td>${statusText}</td>
           <td>
             <button class="btn btn-primary" onclick="SelectEvent('${e.eventID}', '${buttonText}')">${buttonText}</button>
           </td>
+          
         </tr>`;
     });
 
@@ -116,7 +120,13 @@ async function SelectEvent(id, action) {
     };
 
     document.getElementById('deleteBoothButton').onclick = function() {
-      DeleteAttends(id, businessBooth.boothLocation);
+      var warningModal = new bootstrap.Modal(document.getElementById('warningConfirmationModal'));
+      warningModal.show();
+      document.getElementById('confirmUnregisterButton').onclick = function() {
+        DeleteAttends(id, businessBooth.boothLocation)
+        var warningModal = bootstrap.Modal.getInstance(document.getElementById('warningConfirmationModal'));
+        warningModal.hide();
+       }; 
     };
     
   }
@@ -155,7 +165,7 @@ async function SelectEvent(id, action) {
 
 async function GetAvailableBooths(eventID) {
   try {
-    let totalBooths = Array.from({ length: 183 }, (_, i) => i + 1); //so we declare an array with number of booths here
+    let totalBooths = Array.from({ length: 193 }, (_, i) => i + 1); //so we declare an array with number of booths here
     let eventBooths = await GetSelectedBooths(eventID); //get selected booths here
     let selectedBoothLocations = eventBooths.map(booth => booth.boothLocation) //converts selected
     let availableBooths = totalBooths.filter(booth => !selectedBoothLocations.includes(booth.toString())); // remove the selected booths from the total booths here
@@ -236,6 +246,7 @@ async function DeleteAttends(eventID, boothNumber)
      })
      document.getElementById('deleteBoothButton').style.display = 'none'
      handleOnLoad()
+
   }
   catch (error)
   {
