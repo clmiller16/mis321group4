@@ -1,3 +1,11 @@
+  document.addEventListener('DOMContentLoaded', (event) => {
+  const modalElement = document.getElementById('boothSelectionModal');
+  modalElement.addEventListener('hidden.bs.modal', function () {
+      document.getElementById('deleteBoothButton').style.display = 'none';
+  });
+});
+
+
 async function handleOnLoad() {
   await CreateTable();
 }
@@ -69,14 +77,18 @@ async function CreateTable() {
 }
 
 async function SelectEvent(id, action) {
+  clearFormEventListeners('boothselector');
+  let modal = new bootstrap.Modal(document.getElementById('boothSelectionModal'));
+  modal.show();
   if (action === 'Edit')
   {
+      
       let businessId = sessionStorage.getItem('business-id');
       let allBooths = await GetAllAttends();
      
       let businessBooth = allBooths.find(booth => booth.eventID == id && booth.businessID.toString() == businessId);
       
-      document.getElementById('chooseabooth').textContent = `For Event ${id}, your current booth is Booth ${businessBooth.boothLocation}`;
+      document.getElementById('chooseabooth').textContent = `For Event ${id}, your current booth is Booth ${businessBooth.boothLocation}, pick a new booth: `;
 
       let availableBooths = await GetAvailableBooths(id);
       let boothSelect = document.getElementById('booth');
@@ -95,6 +107,7 @@ async function SelectEvent(id, action) {
 
     form.onsubmit = function(event) {
       event.preventDefault(); 
+      modal.hide()
     };
 
     document.getElementById('bookBoothButton').onclick = function() {
@@ -103,8 +116,9 @@ async function SelectEvent(id, action) {
     };
 
     document.getElementById('deleteBoothButton').onclick = function() {
-      DeleteAttends(id, businessBooth.boothLocation); 
+      DeleteAttends(id, businessBooth.boothLocation);
     };
+    
   }
   else{
     try {
@@ -127,6 +141,7 @@ async function SelectEvent(id, action) {
       form.addEventListener('submit', function(event) {
         event.preventDefault(); 
         let selectedBooth = boothSelect.value;
+        modal.hide()
         CreateNewAttends(id, selectedBooth)
       });
   
@@ -199,6 +214,7 @@ async function EditAttends(eventID, boothNumber)
      sessionStorage.setItem('eventID', eventID)
      sessionStorage.setItem('boothNumber', boothNumber)
      window.location.href = 'businessboothconfirmation.html'
+     document.getElementById('deleteBoothButton').style.display = 'none'
   }
   catch (error)
   {
@@ -218,6 +234,7 @@ async function DeleteAttends(eventID, boothNumber)
               },
       body: JSON.stringify(attends),
      })
+     document.getElementById('deleteBoothButton').style.display = 'none'
      handleOnLoad()
   }
   catch (error)
@@ -226,6 +243,11 @@ async function DeleteAttends(eventID, boothNumber)
   }
 }
 
+function clearFormEventListeners(formId) {
+  var form = document.getElementById(formId);
+  var newForm = form.cloneNode(true);
+  form.parentNode.replaceChild(newForm, form);
+}
 
 
 

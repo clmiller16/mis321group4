@@ -59,7 +59,14 @@
         <h2>Map of the Market (also loads map when you select a date)</h2>
         <img src="./resources/styles/Map_2017_2-e1588350571960.jpg" alt="BOOTH MAP">
     </div> -->
-
+    <div class="modal fade" id="boothSelectionModal" tabindex="-1" aria-labelledby="boothSelectionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="boothSelectionModalLabel">Select a Booth</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
     <div class="py-5 text-center" id="boothdropdown">   
         <form id="boothselector">
             <label for="booth" id="chooseabooth">Choose an event above</label>
@@ -68,9 +75,27 @@
             </select>
             <input type="submit" value="Book Booth" class="btn btn-primary" id="bookBoothButton" style="display: none;">
             <input type="submit" value="Unregister" class="btn btn-danger" id="deleteBoothButton" style="display: none;">
-        </form> 
+        </form>
     </div>
-
+  </div>
+</div>
+</div>
+<div class="modal fade" id="unregisterConfirmationModal" tabindex="-1" aria-labelledby="unregisterConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="unregisterConfirmationModalLabel">Unregistration Successful</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          You have unregistered for the event.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <button class="btn btn-secondary my-5 ms-5"><a class="dropdown-item" href="hostabooth.html">&#8592;</a></button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
