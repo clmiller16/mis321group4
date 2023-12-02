@@ -39,7 +39,7 @@ async function createDropdown(){
     <div>
     <div class="dropdown text-center mt-5">
     <button class="btn btn-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Select a Date
+    <i class="bi bi-calendar4"></i>
     </button>
     <ul class="dropdown-menu" id="dropdown-container" style="max-height: 300px; overflow-y: auto;">`
 
@@ -52,6 +52,12 @@ async function createDropdown(){
     </div>`
 
     document.getElementById('date-select').innerHTML = html;
+
+    html = ` <div class="text-center mt-5">
+      <p class="display-6  lh-1 mb-3">(please select a date to continue)</p>
+    </div>
+    `
+    document.getElementById('businesses-at-market-table').innerHTML = html;
 }
 
 async function GetBusinessPerDate(id, date, location){
@@ -62,12 +68,32 @@ async function GetBusinessPerDate(id, date, location){
     console.log(date)
     let businesses = await GetAllBusinesses();
     let attendsplural = await GetAllAttends();
+    let events = await GetAllEvents();
 
-    let html =`
-    <div class="container my-5 text-center">
-        <h1 class="display-4 fw-normal text-body-emphasis">${location} ${date}<button onclick="ShowMap()" class="btn btn-lg btn-light my-5 ms-5">
-        <i class="bi bi-pin-map"></i>
-      </button></h1>
+    let html = `<div class="container my-5 text-center">
+    <h1 class="display-4 text-body-emphasis">${location} ${date}<button onclick="ShowMap()" class="btn btn-lg btn-light my-5 ms-5">
+    <i class="bi bi-pin-map"></i>
+  </button></h1>
+  `
+  html+=`
+  <div class="dropdown">
+  <button class="btn btn-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="bi bi-calendar4"></i>
+  </button>
+  <ul class="dropdown-menu" id="dropdown-container" style="max-height: 300px; overflow-y: auto;">`
+
+  events.forEach(function(e){
+      html+= `<div class="container"><li><button class="btn btn-light" onclick="GetBusinessPerDate('${e.eventID}', '${e.date}', '${e.location}')">${e.date}</button</li></div>`
+  })
+
+  html+= `</ul>
+  </div>
+  </div>`
+  document.getElementById('date-select').innerHTML = html;
+
+    html =`
+    <div class="container text-center">
+
     <div class="p-5 text-center rounded-3" style="background-color: hsl(0, 0%, 100%);">
     <table class="table center" id="myTable">
         <thead id="table-header">

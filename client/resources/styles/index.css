@@ -31,11 +31,15 @@
 }
 
 .background-color{
-    background-color: #333333;
+    background-color: white;
 }
 
 .white{
     background-color: white;
+}
+
+.egshell{
+    background-color: #f8f9fa;
 }
 
 .white-text{
@@ -78,7 +82,7 @@
 }
 
 .limit-height{
-    height: 100vh;
+    height: 60vh;
 }
 
 .navbar{

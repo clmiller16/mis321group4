@@ -152,7 +152,8 @@
   const businessEditForm = document.getElementById('business-edit-form');
   businessEditForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    editBusiness(sessionStorage.getItem('business-id'));
+    editBusiness(sessionStorage.getItem('business-id')).then(() => window.location.href = "businesshome.html");
+    // .then(window.location('businesshome.html'));
   });
 
   function editBusiness(businessID) {
