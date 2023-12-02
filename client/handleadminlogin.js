@@ -1,5 +1,12 @@
 
 //Admin Login
+document.addEventListener('DOMContentLoaded', (event) => {
+    isLoggedIn = sessionStorage.getItem('isLoggedInAdmin')
+    if (isLoggedIn) {
+      window.location.href = 'adminhome.html'; // Redirect to home page
+    }
+  })
+
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     var email = document.getElementById('adminFloatingEmail').value
@@ -16,8 +23,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            sessionStorage.setItem("admin-email", email);
-            sessionStorage.setItem("admin-password", password);
+            sessionStorage.setItem("isLoggedInAdmin", "true")
             window.location.href = 'adminhome.html';
         } else 
         {

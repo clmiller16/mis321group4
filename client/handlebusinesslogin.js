@@ -1,4 +1,11 @@
 //Business Login
+document.addEventListener('DOMContentLoaded', (event) => {
+    isLoggedIn = sessionStorage.getItem('isLoggedInBusiness')
+    if (isLoggedIn) {
+      window.location.href = 'businesshome.html'; // Redirect to home page
+    }
+  })
+
 document.getElementById('businessLoginForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     var email = document.getElementById('businessFloatingEmail').value
@@ -15,9 +22,8 @@ document.getElementById('businessLoginForm').addEventListener('submit', async fu
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            sessionStorage.setItem("business-email", email);
-            sessionStorage.setItem("business-password", password);
-            sessionStorage.setItem("business-id", data.businessid) //returns business id so that you can use this to reference business data on other pages
+            sessionStorage.setItem("business-id", data.businessid)
+            sessionStorage.setItem("isLoggedInBusiness", 'true')
             window.location.href = 'businesshome.html';
         } else 
         {

@@ -19,13 +19,37 @@
         }
         .link-item {
             text-align: center;
-            background-color: gray;
+            background-color: transparent;
         }
         .link-item img {
             max-width: 100%;
             height: auto;
             max-height: 150px;
         }
+        .link-item span {
+            font-size: 1.2em; 
+            font-weight: bold; 
+            color: #333; 
+            font-family: 'Arial', sans-serif; 
+            margin-bottom: 10px; 
+            display: block;
+        }
+          a.run-reports {
+            display: inline-block;
+            background-color: #a0aeba; 
+            padding: 10px; 
+            border-radius: 5px; 
+            border: 2px solid #000306; 
+            text-align: center; 
+            transition: background-color 0.3s; 
+        }
+
+        a.run-reports:hover {
+            background-color: #5a6268; 
+            text-decoration: none;
+        }
+
+
     </style>
 </head>
 </head>
@@ -51,6 +75,7 @@
               </li>
             </ul>
           </div>
+          <button id="signOutButton" class="btn btn-danger" style="margin-left: auto;">Sign Out</button>
         </div>
       </nav>
       <h1>Business Home</h1>
@@ -58,22 +83,45 @@
         <img class="d-block mx-auto mb-4" src="./resources/styles/big-als-farmers-market-high-resolution-logo-transparent.png" alt="" width="150" height="150">
       </div>
       <div class="links">
-        <div class="">
-            <a class="run-reports" href="hostabooth.html">
-                <button class="btn btn-dark btn-lg">Sign up to attend market</button>
-            </a>
+        <div class="link-item">
+          <div>
+            <span>Sign Up For Market</span>
+          </div>
+          <a class="run-reports" href="hostabooth.html">
+            <img src="resources/styles/documentpng.png">
+          </a>
         </div>
-        <div class="">
-            <a class="see-registered" href="businesseditinfo.html">
-                <button class="btn btn-dark btn-lg">Edit Business Info</button>
-            </a>
+        <div class="link-item">
+          <div>
+            <span>Edit Business Info</span>
+          </div>
+          <a class="run-reports" href="businesseditinfo.html">
+            <img src="resources/styles/settingswheelpng.png">
+          </a>
         </div>
-        <div class="">
-            <a class="contact-forms">
-                <button class="btn btn-dark btn-lg">Contact Support Form</button>
-            </a>
+        <div class="link-item">
+          <div>
+            <span>Contact Support</span>
+          </div>
+          <a class="run-reports">
+            <img src="resources/styles/helpbubblepng.png">
+          </a>       
         </div>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script>
+       document.getElementById('signOutButton').addEventListener('click', function() {
+       sessionStorage.clear();
+       window.location.href = 'index.html';
+       });
+      document.addEventListener('DOMContentLoaded', (event) => {
+        var isLoggedIn = sessionStorage.getItem("isLoggedInBusiness"); // Assuming you have such a flag
+        if (!isLoggedIn) {
+          document.getElementById('signOutButton').style.display = 'none';
+        }
+      });
+    </script>
+    
     </body>
     </html>
