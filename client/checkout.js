@@ -69,7 +69,7 @@ async function GetBusinessPerDate(id, date, location){
         <i class="bi bi-pin-map"></i>
       </button></h1>
     <div class="p-5 text-center rounded-3" style="background-color: hsl(0, 0%, 100%);">
-    <table class="table table-hover center" id="myTable">
+    <table class="table center" id="myTable">
         <thead id="table-header">
             <tr>
                 <th scope="col">Booth Location</th>
@@ -131,7 +131,12 @@ function CreateCheckoutTable(pickedDate){
         </header>
     
         <main>
-            <table class="table table-hover center" id="myTable">
+
+        <div class=" justify-content-center align-items-center">
+        <div class="card text-center">
+            <div class="card-body">
+
+            <table class="table center" id="myTable">
                 <thead id="table-header">
                     <tr>
                         <th scope="col">Type</th>
@@ -145,8 +150,8 @@ function CreateCheckoutTable(pickedDate){
                         <td>Adult</td>
                         <td>$5</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" onclick="RemoveTicket('adult', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" onclick="AddTicket('adult', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('adult', '${pickedDate}')" class="btn btn-light"><i class="bi bi-dash-lg"></i></button>
+                            <button type="button" onclick="AddTicket('adult', '${pickedDate}')" class="btn btn-light"><i class="bi bi-plus-lg"></i></button>
                           </div></td>
                         <td>${adultTickets}</td>
                     </tr>
@@ -154,8 +159,8 @@ function CreateCheckoutTable(pickedDate){
                         <td>Child</td>
                         <td>$2</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" onclick="RemoveTicket('child', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" onclick="AddTicket('child', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('child', '${pickedDate}')" class="btn btn-light"><i class="bi bi-dash-lg"></i></button>
+                            <button type="button" onclick="AddTicket('child', '${pickedDate}')" class="btn btn-light"><i class="bi bi-plus-lg"></i></button>
                           </div></td>
                         <td>${childTickets}</td>
                     </tr>
@@ -163,8 +168,8 @@ function CreateCheckoutTable(pickedDate){
                         <td>Student</td>
                         <td>$3</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" onclick="RemoveTicket('student', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" onclick="AddTicket('student', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('student', '${pickedDate}')" class="btn btn-light"><i class="bi bi-dash-lg"></i></button>
+                            <button type="button" onclick="AddTicket('student', '${pickedDate}')" class="btn btn-light"><i class="bi bi-plus-lg"></i></button>
                           </div></td>
                         <td>${studentTickets}</td>
                     </tr>
@@ -172,13 +177,20 @@ function CreateCheckoutTable(pickedDate){
                         <td>Senior</td>
                         <td>$3</td>
                         <td><div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" onclick="RemoveTicket('senior', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-dash"></i></button>
-                            <button type="button" onclick="AddTicket('senior', '${pickedDate}')" class="btn btn-dark"><i class="bi bi-plus"></i></button>
+                            <button type="button" onclick="RemoveTicket('senior', '${pickedDate}')" class="btn btn-light"><i class="bi bi-dash-lg"></i></button>
+                            <button type="button" onclick="AddTicket('senior', '${pickedDate}')" class="btn btn-light"><i class="bi bi-plus-lg"></i></button>
                           </div></td>
                         <td>${seniorTickets}</td>
                     </tr>
                 </tbody>
             </table>
+                
+
+
+            </div>
+        </div>
+        </div>
+
             <div class="center-container">
             <button class="btn btn-lg btn-secondary my-5 ms-5"><a class="dropdown-item" href="purchasetickets1.html">&#8592;</a></button>
                 <button class="btn btn-lg btn-primary my-5 ms-5">
