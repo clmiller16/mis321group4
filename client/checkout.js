@@ -37,7 +37,7 @@ async function createDropdown(){
 
     let html =`
     <div>
-    <div class="dropdown text-center">
+    <div class="dropdown text-center mt-5">
     <button class="btn btn-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Select a Date
     </button>
@@ -65,12 +65,13 @@ async function GetBusinessPerDate(id, date, location){
 
     let html =`
     <div class="container my-5 text-center">
-        <h1 class="display-4 fw-normal text-body-emphasis">Businesses Attending ${date}</h1>
+        <h1 class="display-4 fw-normal text-body-emphasis">${location} ${date}<button onclick="ShowMap()" class="btn btn-lg btn-light my-5 ms-5">
+        <i class="bi bi-pin-map"></i>
+      </button></h1>
     <div class="p-5 text-center rounded-3" style="background-color: hsl(0, 0%, 100%);">
     <table class="table table-hover center" id="myTable">
         <thead id="table-header">
             <tr>
-                <th scope="col">Event ID</th>
                 <th scope="col">Booth Location</th>
                 <th scope="col">Company Name</th>
                 <th scope="col">Product Type</th>
@@ -83,7 +84,6 @@ async function GetBusinessPerDate(id, date, location){
         if (a.eventID == id){
             html+=`
             <tr>
-                <td>${a.eventID}</td>
                 <td>${a.boothLocation}</td>
                 <td>${businesses[a.businessID-1].companyName}</td>
                 <td>${businesses[a.businessID-1].productType}</td>
@@ -96,6 +96,7 @@ async function GetBusinessPerDate(id, date, location){
     </table>
     </div>
     </div>
+
     <div class="center-container">
     <button class="btn btn-lg btn-primary my-5 ms-5">
         <a class="nav-link active" aria-current="page" href="purchasetickets2.html">Next</a>
@@ -105,6 +106,10 @@ async function GetBusinessPerDate(id, date, location){
 
     const pickedDate = localStorage.getItem('pickedDate');
     console.log('the date selected = ' + pickedDate);
+}
+
+function ShowMap(){
+  window.open('map.html')
 }
 
 function handleOnLoadPage2(){

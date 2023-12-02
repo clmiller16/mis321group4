@@ -47,7 +47,7 @@ async function createDropdown(){
 
     let html =`
     <div>
-    <div class="dropdown text-center">
+    <div class="dropdown text-center mt-5">
     <button class="btn btn-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Select a Date
     </button>
@@ -69,7 +69,7 @@ async function createAttendeeDropdown(){
 
     let html =`
     <div>
-    <div class="dropdown text-center">
+    <div class="dropdown text-center mt-5">
     <button class="btn btn-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Select a Date
     </button>
