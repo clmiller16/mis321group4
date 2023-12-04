@@ -46,7 +46,7 @@ async function createTable(){
     console.log(sessionStorage.getItem('account'))
     await GetAllTransactions();
 
-    findAccountName();
+    await findAccountName();
     
     let html =`
     <div class="container my-5 text-center">
