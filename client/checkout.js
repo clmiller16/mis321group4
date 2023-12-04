@@ -94,7 +94,7 @@ async function GetBusinessPerDate(id, date, location){
     html =`
     <div class="container text-center">
 
-    <div class="p-5 text-center rounded-3" style="background-color: hsl(0, 0%, 100%);">
+    <div class="p-5 text-center rounded-3 egshell" style="background-color: hsl(0, 0%, 100%);">
     <table class="table center" id="myTable">
         <thead id="table-header">
             <tr>
@@ -159,8 +159,8 @@ function CreateCheckoutTable(pickedDate){
         <main>
 
         <div class=" justify-content-center align-items-center">
-        <div class="card text-center">
-            <div class="card-body">
+        <div class="shadow card text-center">
+            <div class="card-body" >
 
             <table class="table center" id="myTable">
                 <thead id="table-header">
@@ -294,7 +294,7 @@ function SubmitTickets(){
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" autocomplete="off" required>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
@@ -302,7 +302,7 @@ function SubmitTickets(){
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" autocomplete="off" required>
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -310,7 +310,7 @@ function SubmitTickets(){
 
             <div class="col-12">
               <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" autocomplete="off">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -318,7 +318,7 @@ function SubmitTickets(){
 
             <div class="col-12">
                 <label for="password" class="form-label">Password</label>
-                <input type="text" class="form-control" id="password" placeholder="">
+                <input type="text" class="form-control" id="password" placeholder="" autocomplete="off">
             </div>
 
           </div>
@@ -328,7 +328,7 @@ function SubmitTickets(){
           <div class="row gy-3">
             <div class="col-md-5">
               <label for="cc-name" class="form-label">Name on card</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+              <input type="text" class="form-control" id="cc-name" placeholder="" autocomplete="off" required>
               <small class="text-body-secondary">Full name as displayed on card</small>
               <div class="invalid-feedback">
                 Name on card is required
@@ -337,7 +337,7 @@ function SubmitTickets(){
 
             <div class="col-md-5">
               <label for="cc-number" class="form-label">Credit card number</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+              <input type="text" class="form-control" id="cc-number" placeholder="" autocomplete="off" required>
               <div class="invalid-feedback">
                 Credit card number is required
               </div>

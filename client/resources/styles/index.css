@@ -40,6 +40,11 @@
 
 .egshell{
     background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.shadow{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .white-text{
