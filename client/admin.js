@@ -264,6 +264,48 @@ async function GetAttendeesPerDate(id, date, location){
     document.getElementById('attendee-summary').innerHTML = html;
 }
 
+function handleOnLoad(){
+    createForm();
+}
+
+async function createForm(){
+    let html =`
+    <div class="container my-5 col-md-6">
+    <div class="p-5 rounded-3" style="background-color: hsl(0, 0%, 100%, 0.6);">
+    <form onsubmit="return false" id="fancyText">
+        <div class="form-group container">
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" class="form-control" name="location">
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" class="form-control" name="date"><br>
+            <button onclick="newEvent()" class="btn btn-danger">Submit</button>
+        </div>
+    </form>
+    </div>
+    </div>`;
+
+    document.getElementById('new-event').innerHTML = html;
+
+}
+
+async function newEvent(){
+    let event = {date: document.getElementById('date').value, location: document.getElementById('location').value};
+    console.log(event)
+
+    await addController(event)
+    handleOnLoad();
+}
+
+async function addController(event){
+    await fetch('http://localhost:5124/api/event', {
+        method: "POST",
+        body: JSON.stringify(event),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+}
+
 // const url = 'http://localhost:5124/api/'
 
 // async function GetAllEvents(){

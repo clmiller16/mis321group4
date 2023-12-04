@@ -30,24 +30,34 @@ namespace api.utilities
             return events;
         }
 
-        public static void InsertEventData(Event events){
+        public static void InsertEventData(Event newEvent){
+
+
             Database db = new Database();
 
             using var con = new MySqlConnection(db.cs);
             con.Open();
 
             // check line below
-            string stm = "INSERT INTO market_event (EventID, Date, Location) VALUES (@EventID, @Date, @Location);";
+            string stm = "INSERT INTO market_event (Date, Location) VALUES (@Date, @Location);";
             using var cmd = new MySqlCommand(stm, con);
             
-            cmd.Parameters.AddWithValue("@EventID", events.EventID);
-            cmd.Parameters.AddWithValue("@Date", events.Date);
-            cmd.Parameters.AddWithValue("@Location", events.Location);
+            cmd.Parameters.AddWithValue("@Date", newEvent.Date);
+            cmd.Parameters.AddWithValue("@Location", newEvent.Location);
 
             cmd.Prepare();
             cmd.ExecuteNonQuery();
+            con.Close();   
 
-            con.Close();
+
+            // // Check if cmd is not null before proceeding
+            // if (cmd != null)
+            // {
+            //     cmd.Prepare();
+            //     cmd.ExecuteNonQuery();
+            //     // ...
+            // }
+
         }
     }
 }
