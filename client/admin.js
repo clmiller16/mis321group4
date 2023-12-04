@@ -264,7 +264,7 @@ async function GetAttendeesPerDate(id, date, location){
     document.getElementById('attendee-summary').innerHTML = html;
 }
 
-function handleOnLoad(){
+function handleOnLoadNewEvent(){
     createForm();
 }
 
