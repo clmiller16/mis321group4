@@ -120,7 +120,7 @@ function SignIn(){
         
     </main>
     </div>
-    <button class="btn btn-secondary my-5 ms-5"><a class="dropdown-item" href="index.html">&#8592;</a></button>
+    
     `
 
     document.getElementById('attendee-signin').innerHTML = html

@@ -519,7 +519,7 @@ async function CompletePurchase(){
 
 function ValidateGeneral() { 
   let value = document.getElementById("cc-number").value; // Update this line to get the credit card input by its ID
-  const regEx = /^[0-9]{16}$/; // Assuming a valid credit card number is a 16-digit number
+  const regEx = /^[0-9]{15,16}$/; // Assuming a valid credit card number is a 16-digit number
   return regEx.test(value); 
 }
 
