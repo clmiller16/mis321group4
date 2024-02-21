@@ -12,7 +12,7 @@ document.getElementById('businessLoginForm').addEventListener('submit', async fu
     var password = document.getElementById('businessFloatingPassword').value
 
 
-    await fetch('http://localhost:5124/api/business/Login', {
+    await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/business/Login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

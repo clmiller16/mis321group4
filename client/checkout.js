@@ -3,27 +3,27 @@ let childTickets = 0
 let seniorTickets = 0
 let studentTickets = 0
 
-const url = 'http://localhost:5124/api/'
+const url = 'https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/'
 
 async function GetAllEvents(){
-    let response = await fetch('http://localhost:5124/api/event');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/event');
     events = await response.json();
     return events;
 }
 async function GetAllBusinesses(){
-    let response = await fetch('http://localhost:5124/api/business');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/business');
     businesses = await response.json();
     return businesses;
 }
 
 async function GetAllAttends(){
-    let response = await fetch('http://localhost:5124/api/attends');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attends');
     attends = await response.json();
     return attends;
 }
 
 async function GetAllAttendees(){
-  let response = await fetch('http://localhost:5124/api/attendance');
+  let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attendance');
   attends = await response.json();
   return attends;
 }
@@ -465,8 +465,8 @@ async function CompletePurchase(){
     let formResult = {firstName: document.getElementById('firstName').value, lastName: document.getElementById('lastName').value, email: document.getElementById('email').value, password: document.getElementById('password').value, creditCard: document.getElementById('cc-number').value};
     console.log(formResult)
     
-    let attendeeUrl ='http://localhost:5124/api/attendance'
-    let transactionUrl = 'http://localhost:5124/api/transaction'
+    let attendeeUrl ='https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attendance'
+    let transactionUrl = 'https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/transaction'
 
     let foundID;
 

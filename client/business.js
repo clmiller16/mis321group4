@@ -5,7 +5,7 @@ function handleOnLoad(){
 
 
 async function GetAllEvents(){
-    let response = await fetch('http://localhost:5124/api/event');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/event');
     events = await response.json();
     // console.log(events);
     return events;

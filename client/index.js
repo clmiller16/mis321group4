@@ -1,4 +1,4 @@
-const url = 'http://localhost:5124/api/attendance';
+const url = 'https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attendance';
 
 // this url needs to change to be /attendee instead of mis321 group 4... the controller also needs to change to match it
 // prolly need to have seperate controllers for each entity... maybe
@@ -10,14 +10,14 @@ async function GetAllAttendees(){
 }
 
 async function GetAllEvents(){
-    let response = await fetch('http://localhost:5124/api/event');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/event');
     myEvents = await response.json();
     console.log('getting events')
     console.log(myEvents);
 }
 
 async function GetAllTransactions(){
-    let response = await fetch('http://localhost:5124/api/transaction');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/transaction');
     transactions = await response.json();
     console.log(transactions);
 }
@@ -128,7 +128,7 @@ function SignIn(){
 
 
 async function GetAccounts(){
-    let response = await fetch('http://localhost:5124/api/attendance');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attendance');
     accounts = await response.json();
     return accounts;
 }

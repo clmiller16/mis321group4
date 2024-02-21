@@ -3,33 +3,33 @@ let childTickets = 0
 let seniorTickets = 0
 let studentTickets = 0
 
-const url = 'http://localhost:5124/api/'
+const url = 'https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/'
 
 async function GetAllEvents(){
-    let response = await fetch('http://localhost:5124/api/event');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/event');
     events = await response.json();
     return events;
 }
 async function GetAllBusinesses(){
-    let response = await fetch('http://localhost:5124/api/business');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/business');
     businesses = await response.json();
     return businesses;
 }
 
 async function GetAllAttends(){
-    let response = await fetch('http://localhost:5124/api/attends');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attends');
     attends = await response.json();
     return attends;
 }
 
 async function GetAllAttendees(){
-  let response = await fetch('http://localhost:5124/api/attendance');
+  let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attendance');
   attends = await response.json();
   return attends;
 }
 
 async function GetAllTransactions(){
-    let response = await fetch('http://localhost:5124/api/transaction');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/transaction');
     transactions = await response.json();
     return transactions;
   }
@@ -297,7 +297,7 @@ async function newEvent(){
 }
 
 async function addController(event){
-    await fetch('http://localhost:5124/api/event', {
+    await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/event', {
         method: "POST",
         body: JSON.stringify(event),
         headers: {

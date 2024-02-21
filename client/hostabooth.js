@@ -12,7 +12,7 @@ async function handleOnLoad() {
 
 async function GetAllAttends() {
   try {
-    let response = await fetch('http://localhost:5124/api/attends');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/attends');
     attends = await response.json();
     return attends;
   } catch (error) {
@@ -23,7 +23,7 @@ async function GetAllAttends() {
 
 async function GetAllEvents() {
   try {
-    let response = await fetch('http://localhost:5124/api/event');
+    let response = await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/event');
     events = await response.json();
     return events;
   } catch (error) {
@@ -192,7 +192,7 @@ async function CreateNewAttends(eventID, boothNumber)
 {
   attends = {BoothLocation: boothNumber, EventID: eventID, BusinessID: sessionStorage.getItem('business-id')}
   try {
-    await fetch('http://localhost:5124/api/Attends', {
+    await fetch('https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/Attends', {
       method: "POST",
       headers: {
           Accept: "*/*",
@@ -214,7 +214,7 @@ async function EditAttends(eventID, boothNumber)
   attends = {BoothLocation: boothNumber, EventID: eventID, BusinessID: sessionStorage.getItem('business-id')}
   try
   {
-    await fetch(`http://localhost:5124/api/Attends/${eventID}/${sessionStorage.getItem('business-id')}`, {
+    await fetch(`https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/Attends/${eventID}/${sessionStorage.getItem('business-id')}`, {
       method: 'PUT',
       headers: {
         "content-type": "application/json"
@@ -237,7 +237,7 @@ async function DeleteAttends(eventID, boothNumber)
   attends = {BoothLocation: boothNumber, EventID: eventID, BusinessID: sessionStorage.getItem('business-id')}
   try
   {
-    await fetch(`http://localhost:5124/api/Attends/${eventID}/${sessionStorage.getItem('business-id')}`, {
+    await fetch(`https://big-als-farmers-market-6868e4ee73b9.herokuapp.com/api/Attends/${eventID}/${sessionStorage.getItem('business-id')}`, {
       method: 'DELETE',
       headers: {
         "content-type": "application/json"
